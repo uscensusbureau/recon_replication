@@ -108,12 +108,12 @@ harmonized and merged into a single file for use in reidentifiation
 | List of Counties in 2010 | `allcounties.txt` | csv | csv | Column of all <st><cty> values |
 | List of Blocks in 2010 | `cefblks.csv` | csv | csv | [`recon_replication/cefblks_dict.md`](cefblks_dict.md) |
 
-## Commerical Data Provenance
+## Commercial Data Provenance
 The server initially housing both data and code for the reconstruction and
 reidentification experiments no longer exists. In transitioning to a new
 computational environment, the individual commercial data assets used to
-generate the merged commerical data in the dataset list were not maintained in a
-way to guarantee versioning. As such, the merged commerical data that was
+generate the merged commercial data in the dataset list were not maintained in a
+way to guarantee versioning. As such, the merged commercial data that was
 maintained is considered to be the original input file for the purposes of this
 replication archive. The following list gives information on the original
 commercial assets:
@@ -149,7 +149,7 @@ Additionally, the reconstruction software requires [installation of a MySQL serv
 ### Controlled Randomness
 
 Randomness for the various matching experiments in reidentification is controlled
-by columns of stored uniform draws in the CEF and commerical datasets.
+by columns of stored uniform draws in the CEF and commercial datasets.
 
 At [default settings](https://www.gurobi.com/documentation/9.5/refman/method.html), and at
 times due to [unexpected bugs in its closed-source code](https://groups.google.com/g/gurobi/c/iUT-KPjKxhE/m/Uqm4nvu3srcJ),
@@ -282,7 +282,7 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Log into the AWS EMR cluster
     - `ssh -A <aws_user>@<cluster master address>`
 1. Clone reconstruction repository into user home directory
-    - todo get REPO address `git clone REPO`
+    - `git clone git@github.com:uscensusbureau/recon_replication.git`
 1. Pull and update submodules
     - `cd recon_replication`
     - `git pull`
@@ -408,8 +408,8 @@ environment.
     - `aws s3 cp ${CROOT}/2010-re/hdf_b/rhdf_b.csv.zip .`
     - `unzip -j rhdf_b.csv.zip`
     - `ln -s rhdf_b.csv r01.csv`
-1. Edit the [configuration file](reidmodule/common/config.ini) to point to the working directory by modifying occurences of `<workdir>`
-1. Run first stage of reidentification (todo change these to use recon_replication)
+1. Edit the [configuration file](reidmodule/common/config.ini) to point to the working directory by modifying occurrences of `<workdir>`
+1. Run first stage of reidentification
     - `cd ${workdir}/recon_replication/reidmodule/`
     - `setsid /usr/bin/python3 runreid.py 40 r00`
 1. Change to directory for second stage of reidentification
