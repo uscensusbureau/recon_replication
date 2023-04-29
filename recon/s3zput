@@ -1,0 +1,6 @@
+#!/bin/sh
+# Given a file, compress it and write it to s3.
+# This can be done with some creepy python hacking, but this is easy
+# and nearly as efficient.
+
+(gzip -1f < $1 | aws s3 cp - $2) || exit 1

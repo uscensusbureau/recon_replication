@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Database Reconstruction Report</title>
+    <link rel="stylesheet" href="assets/uswds-2.0.3/css/uswds.min.css">
+    <link rel="stylesheet" href="assets/uswds-override.css">
+    <link rel="stylesheet" href="css/webmaint.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="assets/uswds-2.0.3/js/uswds.min.js"></script>
+    <script src="js/daslog_common.js"></script>
+    <script src="js/dbrecon.js"></script>
+  </head>
+
+  <body>
+    <!--#include virtual="das_navbar_top.html" -->
+
+    <main class="usa-layout-docs usa-section sql" id="main-content">
+      <div class="grid-container">
+
+        <h1 id="section-heading-h2">Database Reconstruction Report</h1>
+
+        <a href='gstats.html?q=select%20*%20from%20dbrecon2.errors%20order%20by%20t%20desc%20limit%2020'>[View last 20 errors]</a>
+
+        <div id="error"></div>
+        <div id="results"></div>
+
+      </div>
+    </main>
+  </body>
+</html>

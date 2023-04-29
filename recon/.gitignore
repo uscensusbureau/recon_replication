@@ -1,0 +1,12 @@
+*.out
+*.out
+*.txt
+#*
+#*
+*gz
+*.bak
+recon.bash
+tests/model_29183980000.lp
+dbrecon.bash
+output-*
+.attach*

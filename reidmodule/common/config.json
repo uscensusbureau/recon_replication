@@ -1,0 +1,14 @@
+{
+    "pythontouse":"/usr/bin/python3",
+    "agefuzdiff": 1,
+    "fuzdiff": 1,
+    "raceethvars":["white","black","aian","asian","nhopi","sor","hisp"],
+    "cefdir":"<workdir>/data/reid_module/cef/",
+    "hdfdir":"<workdir>/data/reid_module/hdf/",
+    "simuldir":"<workdir>/data/reid_module/simul/",
+    "cmrcldir":"<workdir>/data/reid_module/cmrcl/",
+    "rhdfbasedir":"<workdir>/data/reid_module/rhdf/",
+    "rhdfbasersltdir":"<workdir>/data/reid_module/results/rhdf/",
+    "rsltbase":"<workdir>/data/reid_module/results/",
+    "geolookup":"<workdir>/data/reid_module/geo/"
+}

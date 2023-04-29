@@ -1,0 +1,1 @@
+emacs $(ls -t out*  | head -1)

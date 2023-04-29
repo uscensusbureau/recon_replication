@@ -1,0 +1,64 @@
+Programs to convert MDF file to SF1 files used for reconstruction/reidentification.
+Created by: Timothy Beggs
+
+List of programs and instructions:
+
+1. mdf_to_hdf.py
+2. mdf_rename1.json
+3. make_recon_input.py
+4. table_dict.json
+
+1. mdf_to_hdf.py
+    Inputs:
+        rename_json - dictionary json file that handles the renaming of the hdf variables to more closely match the previous sas output
+        mdf_file - file with mdf data
+    Outputs:
+        mdf_hdf_{state_abv}.csv - csv of converted mdf. There should only be one per state this writes the output to the folder that mdf_to_hdf.py is in
+    Arguments:
+        -mf --mdf_file: the mdf file path to parse defualts to "us_dhcp_datafile-DHCP2020_MDFRevisedColumnNames.txt"
+        -rf --rename_json: path to mdf_rename json defaults to "mdf_rename1.json"
+        -c --chunk_size: to manage memory the hdf is sliced into chunks for processing defaults to 50
+        -st --states: states list in numbers ie (1,2,...,52) if all in list it will run for all states defaults to 'all'
+        -gc --geo_conditions: list of variables to group by. This should not need to be changed unless using this process for non sf1 items defaults to ['TABBLKCOU', 'TABTRACTCE', 'TABBLKGRPCE', 'TABBLK']
+        -s3 --s3_bucket: s3 bucket where mdf is stored
+        -mdfk --mdf_key: mdf s3 key
+        -debug: turns on debug logger option
+    Use:
+        Will convert mdf to a hdf file that make_recon_input.py can turn into sf1 like tables. It attempts to keep the naming convention of the SAS version however slight changes were needed for consistancy ie: changing total_male1 to male1/ consolidating count# variable names
+        It will only roll up to one level so ideally this should be the most detailed level of sf1 tables desired to be reproduced.
+    Example Call:
+        python3 mdf_to_hdf.py -st 5 10 -c 50
+
+2. mdf_rename1.json
+    json object of renames this takes the group up names and matches them to as closely to the sas naming scheme as possible. This was done to make backwards comparison more straight forward ie(comparing races_white to white)
+    Example Entry: "races_total": "races1"
+
+3. make_recon_input.py
+    Inputs:
+        hdf_dir: directory where hdf files are
+        table_dict: json that handles variable selection and rollup for sf1 tables
+    Outputs:
+        {state}{sf1table}.csv - EX: (ca000202010.csv) the output sf1 style tables it attempts to place each state in its own folder
+    Arguments:
+        -st --states: states list in numbers ie (1,2,...,52) if all in list it will run for all states defaults to 'all'
+        -hd --hdf_dir: directory where hdfs are stored defaults to the directory where make_recon_input.py is run from
+        -od --out_dir: directory where output tables are written in state folders defaults to the directory where make_recon_input.py is run from
+        -sf1l --sf1_local: directory where geo files should be search for this with make the code only try to pull from the local directory instead of s3 Ex: "/projects/projectdata/fromIRE/data/sf1"
+        -gs --geo_sufix: file sufix which geo files use ie "geo2010.sf1" the code will add in the state and searh for the corresponding file ie "cageo2010.sf1" defaults to "geo2010.sf1" it searches for these files in ./sf1tables/{state_abbreviation}/
+        -td --table_dict: path to table_diction json file which handles variable selection and rollup for sf1 tables defaults to "table_dict.json"
+        -gc --geo_conditions: list of variables the code will consider "grouping" variables defaults to ['TABBLKST', 'TABBLKCOU', 'TABTRACTCE', 'TABBLKGRPCE', 'TABBLK']
+        -s3 --s3_bucket: s3 bucket where sf1 is stored
+        -sf1k --sf1_key: sf1 s3 key
+        -debug: turns on debug logger option
+    Use:
+        Will search the directory for matching state hdf files and attempt to reproduce sf1 tables for that state and write the output files into state folders.
+    Example Call:
+        python3 mdf_to_hdf.py -st 5 10
+
+4. table_dict.json
+    json object that has a dictionary of the sf1 tables and their corresponding variable list
+    Example Entry: "000212010_hdf": ["TABBLKST", "TABBLKCOU", "TABTRACTCE", "black_total1", "black_male_total1", ...]
+
+Expected Run Pattern:
+    It is expected that this will be called from a bash script that runs mdf_to_hdf then make_recon_input. It can be run individually as well first calling mdf_to_hdf then calling make_recon_input.
+    The code was structured to ideally be somewhat representative of the legacy sas code for easier comparision and clarity.

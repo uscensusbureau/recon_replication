@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# cat a gzip'ed file from s3
+(aws s3 cp $1 - | /usr/bin/gunzip) || exit 1
+exit 0

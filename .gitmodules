@@ -1,0 +1,6 @@
+[submodule "dfxml"]
+        path = dfxml
+        url = ../dfxml
+[submodule "census_etl"]
+        path = census_etl
+        url = ../census_etl

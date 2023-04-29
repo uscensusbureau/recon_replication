@@ -1,0 +1,15 @@
+{"dbrecon": {
+  "MYSQL_HOST": "",
+  "MYSQL_DATABASE": "",
+  "MYSQL_USER": "",
+  "MYSQL_PASSWORD": "",
+  "DAS_S3ROOT": "",
+  "GUROBI_HOME": "",
+  "GRB_APP_NAME": "",
+  "GRB_LICENSE_FILE": "",
+  "GRB_ISV_NAME": "",
+  "BCC_HTTPS_PROXY": "",
+  "BCC_HTTP_PROXY": "",
+  "AWS_DEFAULT_REGION": "",
+  "DAS_ENVIROMENT": ""
+}}
