@@ -6,12 +6,14 @@ commercial data and internal 2010 Census data containing personally identifiable
 information, determines if such links constitute reidentification, and computes
 statistics related to the reconstruction and reidentification. 
 
-The code uses a combination of Python, Gurobi™, SQL, and bash scripts. Production
-runs of this software were performed on Amazon Web Services (AWS) Elastic Map
-Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2) instances. Using a
-cluster of 30 "large" nodes in EMR, the reconstruction step takes approximately
-3 full days. Using a single EC2 instance, the reidentification step takes
-approximately 14 full days.
+The code uses a combination of Python, Gurobi™, SQL, and bash scripts.
+Production runs of this software were performed on Amazon Web Services (AWS)
+Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2)
+instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction step
+takes approximately 3 full days per run. Using a cluster of 25 `r5.24xlarge`
+nodes, the solution variability analysis takes approximately 14 days. Using a
+single `r5.24xlarge` node, the reidentification step takes approximately 14
+days.
 
 In the [instructions for running the software](#Instructions), terms contained
 within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
@@ -127,7 +129,7 @@ commercial assets:
 
 ## Computational requirements
 Instructions for re-executing the reconstruction and solution variability code
-in this replication package assumes access to an AWS EMR cluster, AWS S3
+in this replication package assumes access to an AWS cluster, AWS S3
 storage, and a MySQL server for job scheduling.
 
 Instructions for re-executing the reidentification code, which uses data
@@ -140,9 +142,7 @@ The documentation above is accurate as of April 26, 2023.
 
 ### Software requirements
 
-Python requirements for AWS EMR instances are given in [`recon_replication/emr_dependencies.txt`](emr_dependencies.txt)
-
-Python requirements for AWS EC2 instances or Census internal servers are given in [`recon_replication/ec2_dependencies.txt`](ec2_dependencies.txt)
+Python requirements are given in [`recon_replication/requirements.txt`](requirements.txt)
 
 Additionally, the reconstruction software requires [installation of a MySQL server](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/).
 
@@ -172,23 +172,24 @@ Approximate time needed to reproduce the analyses on a standard (2022) desktop m
 
 #### Details
 
-The reconstruction code was last run on a 30-node AWS `r5.24xlarge` cluster.
-Computation took 3 days for each set of input tables. The reidentifiation code
-was last run on a single AWS EC2 `r5.24xlarge` node. Computation took
-approximately 2 weeks. Each `r5.24xlarge` node has 96 vCPUs and 768GiB of
-memory.
+The reconstruction code was last run on a 30 node AWS `r5.24xlarge` cluster.
+Computation took approximiately 3 days for each set of input tables.  The
+solution variability was last run on a 25 node AWS `r5.24xlarge` cluster.
+Computation took approximatley 2 weeks. The reidentifiation code was last run
+on a single AWS `r5.24xlarge` node. Computation took approximately 2 weeks.
+Each `r5.24xlarge` node has 96 vCPUs and 768GiB of memory.
 
 ## Description of programs/code
 
 Reconstruction of the 2010 HDF via the publicly-available 2010 SF1 table files
 and the computation of subsequent solution variability measures do not require
 access to the Census Bureau's Enterprise Environment. The instructions below
-assume access to Amazon Web Services (AWS), an AWS Elastic Map Reduce (EMR)
-cluster similar in size to the [environment details above](#Details), an S3
-bucket to hold the necessary SF1 input tabulations, and the [necessary Python
-packages](#Software-requirements).  Additionally, these steps require a
-[license](https://www.gurobi.com/solutions/licensing/) to use the Gurobi™ optimization
-software; a free academic license is available.
+assume access to Amazon Web Services (AWS), a cluster similar in size to the
+[environment details above](#Details), an S3 bucket to hold the necessary SF1
+input tabulations, and the [necessary Python packages](#Software-requirements).
+Additionally, these steps require a
+[license](https://www.gurobi.com/solutions/licensing/) to use the Gurobi™
+optimization software; a free academic license is available.
 
 Reidentification of a reconstructed 2010 HDF file (rHDF) requires access to
 sensitive data assets given in the [dataset list](#Dataset-list). The
@@ -206,7 +207,7 @@ Access to AWS requires [creation of an account](https://aws.amazon.com/account/)
 replicators should follow instructions for [creating an AWS EMR cluster](https://aws.amazon.com/emr/getting-started/).
 
 #### S3 bucket creation
-Reconstruction via an AWS EMR cluster requires that the necessary SF1 input
+Reconstruction via an AWS cluster requires that the necessary SF1 input
 files exist within an AWS Simple Storage Service (S3) bucket. Replicators
 should follow instructions for [creating an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html).
 
@@ -214,7 +215,7 @@ should follow instructions for [creating an S3 bucket](https://docs.aws.amazon.c
 The reconstruction software uses SQL, via MySQL, to manage the workload across the AWS cluster. 
 Replicators should follow instructions for [creating a MySQL server](https://dev.mysql.com/doc/mysql-getting-started/en/).
 The instructions below will assume that replicators are installing MySQL on the master node of
-the AWS EMR cluster, but replicators may choose to have a dedicated AWS EMR or EC2 instance
+the AWS cluster, but replicators may choose to have a dedicated AWS EMR or EC2 instance
 for the MySQL server if they prefer.
 
 
@@ -279,7 +280,7 @@ for the MySQL server if they prefer.
 The instructions assume that the user will store reconstruction results
 in an AWS S3 bucket `<S3ROOT>`
 
-1. Log into the AWS EMR cluster
+1. Log into the AWS cluster
     - `ssh -A <aws_user>@<cluster master address>`
 1. Clone reconstruction repository into user home directory
     - `git clone git@github.com:uscensusbureau/recon_replication.git`
@@ -371,9 +372,9 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Copy the census tract extract to S3 if desired
     - `aws s3 cp rhdf_bt_0solvar_extract.csv <S3ROOT>/2010-re/hdf_bt/`
 
-### Shutdown AWS EMR cluster
+### Shutdown AWS cluster
 At the point where the reconstructed HDF files for both experiments and the
-solution variability results are created and copied into S3, the EMR cluster
+solution variability results are created and copied into S3, the cluster
 may be shutdown.
 
 
