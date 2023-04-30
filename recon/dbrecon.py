@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 #
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
 """dbrecon.py
-
-Common code and constants for the database reconstruction.
-Note: much of this has been moved to ctools.dbfile.
+Common code and constants for the database reconstruction.  part of the
+replication archive for The U.S. Census Bureau's Ex Post Confidentiality
+Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
 """
 
 import argparse

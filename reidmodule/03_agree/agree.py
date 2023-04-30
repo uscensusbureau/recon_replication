@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*- 
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+
 """
 Module performs record-by-record match between reconstructed 2010 decennial data
 and the confidential 2010 Census data, HDF and CEF. Threaded to use many workers
@@ -12,6 +17,9 @@ Args:
 Example execution: 
     $ setsid python agree.py 55 hdf r00
 
+Part of the replication archive for The U.S. Census Bureau's Ex Post
+Confidentiality Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
 """
 
 import re

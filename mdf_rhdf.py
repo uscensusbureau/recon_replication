@@ -1,3 +1,17 @@
+#As a work of the United States government, this project is in the public
+#domain within the United States.#Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+
+'''
+Given an Microdata Detail File (MDF) based on the 2010 Census from the 2020
+Census Disclosure Avoidance System (DAS) or a published Privacy Protected
+Microdata File from the 2010 Census, this software converts the file into the
+format required for use in the replication archive for The U.S. Census Bureau's
+Ex Post Confidentiality Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
+'''
+
 import pandas as pd
 import numpy as np
 import logging

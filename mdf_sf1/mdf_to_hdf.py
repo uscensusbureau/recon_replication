@@ -1,3 +1,18 @@
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+
+'''
+Given a Microdata Detail File (MDF) on 2010 Census data created by the
+2020 Disclosure Avoidance System (DAS), convert the file to the
+Hundred Percent Detail File (HDF) format needed for table creation.
+
+Part of the replication archive for The U.S. Census Bureau's Ex Post
+Confidentiality Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
+'''
+
 #!/usr/bin/env python3
 import pandas as pd
 import numpy as np

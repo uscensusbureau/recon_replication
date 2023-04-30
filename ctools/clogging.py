@@ -1,3 +1,7 @@
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
 #
 #
 """clogging.py - a collection of logging support methods for use at the US Census Bureau.

@@ -6,7 +6,7 @@ commercial data and internal 2010 Census data containing personally identifiable
 information, determines if such links constitute reidentification, and computes
 statistics related to the reconstruction and reidentification. 
 
-The code uses a combination of Python, Gurobi, SQL, and bash scripts. Production
+The code uses a combination of Python, Gurobi™, SQL, and bash scripts. Production
 runs of this software were performed on Amazon Web Services (AWS) Elastic Map
 Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2) instances. Using a
 cluster of 30 "large" nodes in EMR, the reconstruction step takes approximately
@@ -18,7 +18,7 @@ within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
 beginning with a dollar sign (e.g. `${term}`) are environment variables and may be copied as-is
 to execute code.
 
-## Data Availability and Provenance Statements
+## Data availability and provenance statements
 
 This project uses both publicly available and confidential data as inputs. The
 publicly available data consist of the 2010 Census Summary 1 File (2010 SF1)
@@ -27,7 +27,7 @@ tabulations, which are available at:
 [https://www2.census.gov/census_2010/04-Summary_File_1/](https://www2.census.gov/census_2010/04-Summary_File_1/)
 
 The necessary files are the zipped 2010 SF1 tables, with filenames
-`<State>/<st>2010.sf1.zip`. This project used data for all 50 states and the
+`<state>/<st>2010.sf1.zip`. This project used data for all 50 states and the
 District of Columbia.
 
 The confidential data consist of:
@@ -51,7 +51,7 @@ are documented in DMS Project P-7502798.
 
 [^1]: The `DAS_S3ROOT` environment variable is correctly set in properly configured DAS EC2 instances
 
-### Statement about Rights
+### Statement about rights
 
 - [x] We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
 - [x] We certify that the author(s) of the manuscript have documented permission to redistribute/publish the data contained within this replication package.
@@ -60,13 +60,13 @@ Data contained within the replication package are covered under project #P-75027
 - CBDRB-FY22-DSEP-003
 - CBDRB-FY22-DSEP-004
 
-### Summary of Availability
+### Summary of availability
 
 - [ ] All data **are** publicly available.
 - [x] Some data **cannot be made** publicly available.
 - [ ] **No data can be made** publicly available.
 
-### Details on each Data Source
+### Details on each data source
 
 The results of this research rely on both publicly available 2010 Census
 tabulations and confidential microdata from the 2010 Census and commercial
@@ -108,7 +108,7 @@ harmonized and merged into a single file for use in reidentifiation
 | List of Counties in 2010 | `allcounties.txt` | csv | csv | Column of all <st><cty> values |
 | List of Blocks in 2010 | `cefblks.csv` | csv | csv | [`recon_replication/cefblks_dict.md`](cefblks_dict.md) |
 
-## Commercial Data Provenance
+## Commercial data provenance
 The server initially housing both data and code for the reconstruction and
 reidentification experiments no longer exists. In transitioning to a new
 computational environment, the individual commercial data assets used to
@@ -138,7 +138,7 @@ reasons.
 
 The documentation above is accurate as of April 26, 2023.
 
-### Software Requirements
+### Software requirements
 
 Python requirements for AWS EMR instances are given in [`recon_replication/emr_dependencies.txt`](emr_dependencies.txt)
 
@@ -146,14 +146,14 @@ Python requirements for AWS EC2 instances or Census internal servers are given i
 
 Additionally, the reconstruction software requires [installation of a MySQL server](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/).
 
-### Controlled Randomness
+### Controlled randomness
 
 Randomness for the various matching experiments in reidentification is controlled
 by columns of stored uniform draws in the CEF and commercial datasets.
 
 At [default settings](https://www.gurobi.com/documentation/9.5/refman/method.html), and at
 times due to [unexpected bugs in its closed-source code](https://groups.google.com/g/gurobi/c/iUT-KPjKxhE/m/Uqm4nvu3srcJ),
-the Gurobi solver used for reconstruction exhibits can exhibit some mild
+the Gurobi™ solver used for reconstruction exhibits can exhibit some mild
 non-determinism resulting in small differences in the published results and the
 results from replication.
 
@@ -186,31 +186,31 @@ access to the Census Bureau's Enterprise Environment. The instructions below
 assume access to Amazon Web Services (AWS), an AWS Elastic Map Reduce (EMR)
 cluster similar in size to the [environment details above](#Details), an S3
 bucket to hold the necessary SF1 input tabulations, and the [necessary Python
-packages](#Software-Requirements).  Additionally, these steps require a
-[license](www.gurobi.com/solutions/licensing/) to use the Gurobi optimization
+packages](#Software-requirements).  Additionally, these steps require a
+[license](https://www.gurobi.com/solutions/licensing/) to use the Gurobi™ optimization
 software; a free academic license is available.
 
 Reidentification of a reconstructed 2010 HDF file (rHDF) requires access to
-sensitive data assets given in the [dataset list](#Dataset-List). The
+sensitive data assets given in the [dataset list](#Dataset-list). The
 instructions below assume access to those data, a server within the Census
 Enterprise environment with resources on par with a single AWS EC2 `r5.24xlarge`
-node, and that the [necessary Python packages](#Software-Requirements) have been
+node, and that the [necessary Python packages](#Software-requirements) have been
 installed.  If the rHDF and solution variability results were created outside
 the Census Enterprise environment, then the replicator will need to work with
 Census staff to have their data files ingested.
     
 ### System setup
 
-#### AWS EMR Cluster Creation
+#### AWS EMR cluster creation
 Access to AWS requires [creation of an account](https://aws.amazon.com/account/). Once the account is created,
 replicators should follow instructions for [creating an AWS EMR cluster](https://aws.amazon.com/emr/getting-started/).
 
-#### S3 Bucket Creation
+#### S3 bucket creation
 Reconstruction via an AWS EMR cluster requires that the necessary SF1 input
 files exist within an AWS Simple Storage Service (S3) bucket. Replicators
 should follow instructions for [creating an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html).
 
-#### MySQL Server Setup
+#### MySQL server setup
 The reconstruction software uses SQL, via MySQL, to manage the workload across the AWS cluster. 
 Replicators should follow instructions for [creating a MySQL server](https://dev.mysql.com/doc/mysql-getting-started/en/).
 The instructions below will assume that replicators are installing MySQL on the master node of
@@ -225,23 +225,23 @@ for the MySQL server if they prefer.
 - [recon_replication/recon/dbrtool.py](recon/dbrtool.py): Script designed to run all steps of reconstruction, including subroutines for querying the SQL database for status of the run
 - [recon_replication/recon/s1_make_geo_files.py](recon/s1_make_geo_files.py): Generates SQL tables containing information on population sizes by 2010 Census summary level (geography)
 - [recon_replication/recon/s2_nbuild_state_stats.py](recon/s2_nbuild_state_stats.py): Ingests SF1 tables for use in reconstruction
-- [recon_replication/recon/s3_pandas_synth_lp_files.py](recon/s3_pandas_synth_lp_files.py): Read processed SF1 tables and create the linear programming (LP) files needed for the Gurobi solver
-- [recon_replication/recon/s4_run_gurobi.py](recon/s4_run_gurobi.py): Invokes Gurobi to find solutions to the systems described by the LP files, outputs solutions in Gurobi SOL format
-- [recon_replication/recon/s5_make_microdata.py](recon/s5_make_microdata.py): Convert the Gurobi solution (SOL) files into tract-level microdata CSV files
-- [recon_replication/recon/s6_make_rhdf.py](recon/s6_make_rhdf.py): Merge the tract-level CSV files into a single national file
+- [recon_replication/recon/s3_pandas_synth_lp_files.py](recon/s3_pandas_synth_lp_files.py): Read processed SF1 tables and create the linear programming (LP) files needed for the Gurobi™ solver
+- [recon_replication/recon/s4_run_gurobi.py](recon/s4_run_gurobi.py): Invokes Gurobi™ to find solutions to the systems described by the LP files, outputs solutions in Gurobi™ SOL format
+- [recon_replication/recon/s5_make_microdata.py](recon/s5_make_microdata.py): Convert the Gurobi™ solution (SOL) files into census tract-level microdata CSV files
+- [recon_replication/recon/s6_make_rhdf.py](recon/s6_make_rhdf.py): Merge the census tract-level CSV files into a single national file
 - [recon_replication/recon/dbrecon.py](recon/dbrecon.py): Contains utilities used by the other reconstruction scripts for interacting with the SQL database
 - [recon_replication/recon/dbrecon_config.json](recon/dbrecon_config.json): Config file store MYSQL, DAS, GUROBI, and AWS key variables
 
-#### Solution Variability
+#### Solution variability
 
-- [recon_replication/recon/solution_variability/block_level_rewriter.py](recon/solution_variability/block_level_rewriter.py): Splits the tract-level Gurobi solution files from reconstruction into block-level components
-- [recon_replication/recon/solution_variability/solvar/](recon/solution_variability/solvar/): Python module to compute solution variability for the block-level components
+- [recon_replication/recon/solution_variability/block_level_rewriter.py](recon/solution_variability/block_level_rewriter.py): Splits the census tract-level Gurobi™ solution files from reconstruction into census block-level components
+- [recon_replication/recon/solution_variability/solvar/](recon/solution_variability/solvar/): Python module to compute solution variability for the census block-level components
 
-#### Zero Solution Variability Tract Extraction
+#### Zero solution variability census tract extraction
 
-- [recon_replication/extract/extract_tracts.py](extract/extract_tracts.py): Python script to generate statistics for a subset of tracts having only zero solution-variability blocks
+- [recon_replication/extract/extract_tracts.py](extract/extract_tracts.py): Python script to generate statistics for a subset of census tracts having only zero solution-variability census blocks
 
-#### MDF and PPMF Conversion
+#### MDF and PPMF conversion
 
 -[recon_replication/mdf_rhdf.py](mdf_rhdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to rHDF format for use in reidentification
 -[recon_replication/mdf_sf1/mdf_to_hdf.py](mdf_sf1/mdf_to_hdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to 2010 HDF format for use in 2010 SF1 table creation
@@ -268,14 +268,14 @@ for the MySQL server if they prefer.
 - [recon_replication/reidpaper_python/python/solvar_stats.py](reidpaper_python/python/solvar_stats.py): Computes statistics based on solution variability
 
 
-#### Table Creation
+#### Table creation
 
 - [recon_replication/results/make_tables.do](results/make_tables.do): Stata script to produce tabular output of reidentification statistics
 
 
 ## Instructions
 
-### Reconstruction using Block- and Tract-level SF1 tables
+### Reconstruction using cesus block- and census tract-level SF1 tables
 The instructions assume that the user will store reconstruction results
 in an AWS S3 bucket `<S3ROOT>`
 
@@ -299,10 +299,10 @@ in an AWS S3 bucket `<S3ROOT>`
     - `MYSQL_USER: <MYSQL Username>`
     - `MYSQL_PASSWORD: <MYSQL Password>`
     - `DAS_S3ROOT: <aws location to load/read files>`
-    - `GUROBI_HOME: <Gurobi home>`
-    - `GRB_APP_NAME: <Gurobi App Name>`
-    - `GRB_LICENSE_FILE: <Gurobi license file location>`
-    - `GRB_ISV_NAME: <Gurobi ISV name>`
+    - `GUROBI_HOME: <Gurobi™ home>`
+    - `GRB_APP_NAME: <Gurobi™ App Name>`
+    - `GRB_LICENSE_FILE: <Gurobi™ license file location>`
+    - `GRB_ISV_NAME: <Gurobi™ ISV name>`
     - `BCC_HTTPS_PROXY: <BCC HTTPS proxy (may not be needed for release)>`
     - `BCC_HTTP_PROXY : <BCC HTTP proxy (may not be needed for release)>`
     - `AWS_DEFAULT_REGION : <DEFAULT AWS REGION ex: us-gov-west-1>`
@@ -318,6 +318,8 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Resize cluster to 30 core nodes using the directions above
 1. Run steps 3 & 4 to create LP and SOL files for reconstruction
     - `./dbrtool.py --reident hdf_bt --launch_all`
+1. Check on status of completed census tracts
+    - `./dbrtool.py --reident hdf_bt --status`
 1. Relaunch idle clusters after 1 day
     - `./dbrtool.py --reident hdf_bt --launch_all`
 1. Run steps 5 & 6 to produce microdata (rHDF)
@@ -325,7 +327,7 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Verify that microdata was copied to S3 bucket
     - `aws s3 ls <S3_ROOT>/2010-re/hdf_bt/rhdf_bt.zip`
 
-### Reconstruction using Block-level SF1 tables only
+### Reconstruction using census block-level SF1 tables only
 
 1. Register new reconstruction experiment and create database tables
     - `./dbrtool.py --reident hdf_b --register`
@@ -336,6 +338,8 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Resize cluster to 30 core nodes
 1. Run steps 3 & 4 to create LP and SOL files for reconstruction, using `blockonly` branch of the `recon_replication` repository
     - `./dbrtool.py --reident hdf_b --launch_all --branch blockonly`
+1. Check on status of completed census tracts
+    - `./dbrtool.py --reident hdf_b --status`
 1. Relaunch idle clusters after 1 day
     - `./dbrtool.py --reident hdf_b --launch_all --branch blockonly`
 1. Run steps 5 & 6 to produce microdata (rHDF)
@@ -343,7 +347,7 @@ in an AWS S3 bucket `<S3ROOT>`
 1. Verify that microdata was copied to S3 bucket
     - `aws s3 ls <S3_ROOT>/2010-re/hdf_b/rhdf_b.zip`
 
-### Solution Variability
+### Solution variability
 
 1. Change to the solution variability folder
     - `cd ~/recon/solution_variability`
@@ -355,16 +359,16 @@ in an AWS S3 bucket `<S3ROOT>`
     - `export SPARK_HOME=/usr/lib/spark && export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-src.zip`
     - `python -m solvar -d -i solvar/hdf_bt/2010-block-results -o solvar/hdf_b/solvar-out-block --age --demo &> solvar_out_$(date +"%FT%H%M").txt`
 
-### Run extract of zero-solution-variability tracts
+### Run extract of zero-solution-variability census tracts
 
 1. Change to the `extract` folder
     - `cd ~/recon_replication`
-1. Copy the reconstructed HDF file for the block-tract experiment to the directory and unzip
+1. Copy the reconstructed HDF file for the census block-tract experiment to the directory and unzip
     - `aws s3 cp <S3ROOT>/2010-re/hdf_bt/rhdf_bt.zip .`
     - `unzip -j rhdf_bt.zip`
 1. Run the extraction
     - `python extract_tracts.py rhdf_bt.csv`
-1. Copy the tract extract to S3 if desired
+1. Copy the census tract extract to S3 if desired
     - `aws s3 cp rhdf_bt_0solvar_extract.csv <S3ROOT>/2010-re/hdf_bt/`
 
 ### Shutdown AWS EMR cluster
@@ -421,7 +425,7 @@ environment.
 1. Numerical result from this module are not publicly shareable and will be located in:
     - `${workdir}/recon_replication/reidpaper_python/results/CBDRB-FY22-DSEP-004/CBDRB-FY22-DSEP-004.xlsx`
 
-### Tabular Output
+### Tabular output
 1. Change to the directory containing Stata code for tabular output
     - `cd ${workdir}/recon_replication/results/`
 1. Link the outputs from reidpaper_python into the `in` folder:
@@ -434,20 +438,21 @@ environment.
 
 ## List of tables reproduced by or found in this replication package
 
-This replication package reproduces the [main text tables and figures](#Main-Text-Tables-and-Figures)
-and the [supplementary text tables and figures](#Supplementary-Text-Tables-and-Figures)
+This replication package reproduces the [main text tables and figures](#Main-text-tables-and-figures)
+and the [supplementary text tables and figures](#Supplementary-text-tables-and-figures)
 listed below.  It does not reproduce flowcharts, algorithms, or non-numeric tables given in the
 main or supplementary texts.
 
-### Main Text Tables and Figures
+### Main text tables and figures
 
 | Table or Figure | Description |
 | --- | --- |
-| Table 3 | Reconstruction Agreement Statistics |
+| Table 3 | Reconstruction agreement statistics |
 | Table 4 | Putative reidentification, confirmed reidentification, and precision rates for all data-defined persons in the 2010 Census |
 | Table 5 | Putative reidentifications, confirmed reidentifications, and precision rates for nonmodal persons |
+| Table 6 | Precision rates for all zero solvar nonmodal persons and population unique zero solvar nonmodal persons including results using the 2020 Census Disclosure Avoidance System applied to the 2010 Census
 
-### Supplementary Text Tables and Figures
+### Supplementary text tables and figures
 
 | Table or Figure | Description |
 | --- | --- |
@@ -457,7 +462,8 @@ main or supplementary texts.
 | Table S7 | Putative reidentification, confirmed reidentification, and precision rates for all data-defined COMRCL records and for all data-defined records matching the CEF |
 | Table S8 | Putative reidentifications, confirmed reidentifications, and precision rates for  nonmodal persons in blocks with zero solution variability |
 | Table S9 | Putative reidentifications, confirmed reidentifications, and precision rates for modal persons by census block size |
-| Table S10 | Putative reidentifications, confirmed reidentifications, and precision rates for nonmodal persons using the 2020 Disclosure Avoidance System by census block size |
-| Table S11 | Putative reidentifications, confirmed reidentifications, and precision rates for all data-defined persons using the 2020 Disclosure Avoidance System by census block size |
-| Table S12 | Putative reidentifications, confirmed reidentifications, and precision rates for modal persons using the 2020 Disclosure Avoidance System by census block size |
+| Table S10 | Selected reconstruction agreement statistics with comparisons to output from the 2020 Census Disclosure Avoidance System using the 2010 Census as input |
+| Table S11 | Putative reidentifications, confirmed reidentifications, and precision rates for nonmodal persons using the 2020 Disclosure Avoidance System by census block size |
+| Table S12 | Putative reidentifications, confirmed reidentifications, and precision rates for all data-defined persons using the 2020 Disclosure Avoidance System by census block size |
+| Table S13 | Putative reidentifications, confirmed reidentifications, and precision rates for modal persons using the 2020 Disclosure Avoidance System by census block size |
 
