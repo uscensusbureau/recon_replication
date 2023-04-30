@@ -9,11 +9,11 @@ statistics related to the reconstruction and reidentification.
 The code uses a combination of Python, Gurobi™, SQL, and bash scripts.
 Production runs of this software were performed on Amazon Web Services (AWS)
 Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2)
-instances. Using a cluster of 30 large nodes in EMR, the reconstruction step
-takes approximately 3 full days per run. Using a cluster of 25 large nodes in
-EMR, the solution variability analysis takes approximately 14 days. Using a
-single large node EC2 instance, the reidentification step takes approximately
-14 days.
+instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction step
+takes approximately 3 full days per run. Using a cluster of 25 `r5.24xlarge`
+nodes, the solution variability analysis takes approximately 14 days. Using a
+single `r5.24xlarge` node, the reidentification step takes approximately 14
+days.
 
 In the [instructions for running the software](#Instructions), terms contained
 within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
@@ -129,7 +129,7 @@ commercial assets:
 
 ## Computational requirements
 Instructions for re-executing the reconstruction and solution variability code
-in this replication package assumes access to an AWS EMR cluster, AWS S3
+in this replication package assumes access to an AWS cluster, AWS S3
 storage, and a MySQL server for job scheduling.
 
 Instructions for re-executing the reidentification code, which uses data
