@@ -6,12 +6,14 @@ commercial data and internal 2010 Census data containing personally identifiable
 information, determines if such links constitute reidentification, and computes
 statistics related to the reconstruction and reidentification. 
 
-The code uses a combination of Python, Gurobi™, SQL, and bash scripts. Production
-runs of this software were performed on Amazon Web Services (AWS) Elastic Map
-Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2) instances. Using a
-cluster of 30 "large" nodes in EMR, the reconstruction step takes approximately
-3 full days. Using a single EC2 instance, the reidentification step takes
-approximately 14 full days.
+The code uses a combination of Python, Gurobi™, SQL, and bash scripts.
+Production runs of this software were performed on Amazon Web Services (AWS)
+Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2)
+instances. Using a cluster of 30 large nodes in EMR, the reconstruction step
+takes approximately 3 full days per run. Using a cluster of 25 large nodes in
+EMR, the solution variability analysis takes approximately 14 days. Using a
+single large node EC2 instance, the reidentification step takes approximately
+14 days.
 
 In the [instructions for running the software](#Instructions), terms contained
 within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
@@ -172,11 +174,12 @@ Approximate time needed to reproduce the analyses on a standard (2022) desktop m
 
 #### Details
 
-The reconstruction code was last run on a 30-node AWS `r5.24xlarge` cluster.
-Computation took 3 days for each set of input tables. The reidentifiation code
-was last run on a single AWS EC2 `r5.24xlarge` node. Computation took
-approximately 2 weeks. Each `r5.24xlarge` node has 96 vCPUs and 768GiB of
-memory.
+The reconstruction code was last run on a 30 node AWS EMR `r5.24xlarge`
+cluster.  Computation took approximiately 3 days for each set of input tables.
+The solution variability was last run on a 25 node AWS EMR `r5.24xlarge`
+cluster.  Computation took approximatley 2 weeks. The reidentifiation code was
+last run on a single AWS EC2 `r5.24xlarge` node. Computation took approximately
+2 weeks.  Each `r5.24xlarge` node has 96 vCPUs and 768GiB of memory.
 
 ## Description of programs/code
 
