@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
 """
-Read processed SF1 data & make LP file to be input to optimizer. Currently done in pandas & by buffering in RAM; memory intensive.
-<6/21/2018: TSA wrote initial code, performed reconstruction by manually running independent processes on many AWS nodes. [No git repo.]
-<5/1/2019: PDL performed minor cleanup after receiving code from TSA, moved code into git repo, provided documentation, completed reconstruction where small proportion of TSA runs had failed. [git repo: reid-reconhdf]
-<5/4/2021: SLG switched from reid-reconhdf repo to stats_2010 repo [so, current git history begins in stats_2010], altered code to use SQL server, partial automation over a cluster, partial spark support. SLG tried to simplify this file further, but was never able to figure out what it was actually doing.
-<5/6/2021: PDL added support for 2+ race tabulations, which were thought to be, but were not, included in original reconstruction, and performed additional cleanup, refactoring, etc.
+Read processed SF1 data & make LP file to be input to optimizer. Currently done
+in pandas & by buffering in RAM; memory intensive.
+
+<6/21/2018: TSA wrote initial code, performed reconstruction by manually
+running independent processes on many AWS nodes. [No git repo.]
+
+<5/1/2019: PDL performed minor cleanup after receiving code from TSA, moved
+code into git repo, provided documentation, completed reconstruction where
+small proportion of TSA runs had failed. [git repo: reid-reconhdf]
+
+<5/4/2021: SLG switched from reid-reconhdf repo to stats_2010 repo [so, current
+git history begins in stats_2010], altered code to use SQL server, partial
+automation over a cluster, partial spark support. SLG tried to simplify this
+file further, but was never able to figure out what it was actually doing.
+
+<5/6/2021: PDL added support for 2+ race tabulations, which were thought to be,
+but were not, included in original reconstruction, and performed additional
+cleanup, refactoring, etc.
+
+Part of the replication archive for The U.S. Census Bureau's Ex Post
+Confidentiality Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
 """
 import math, csv, gc, itertools, json, logging, multiprocessing, os, sys, time, tempfile, subprocess, atexit, datetime
 import os.path

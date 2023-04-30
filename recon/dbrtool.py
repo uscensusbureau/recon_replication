@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
 """
-Program to maniuplate the databsae for the database reconstruciton system.
+Program to manipulate the database for the database reconstruciton system.
+Part of the replication archive for The U.S. Census Bureau's Ex Post
+Confidentiality Analysis of the 2010 Census Data Publications
+(https://github.com/uscensusbureau/recon_replication)
 """
 
 HELP="""
