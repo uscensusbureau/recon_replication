@@ -142,9 +142,11 @@ The documentation above is accurate as of April 26, 2023.
 
 ### Software requirements
 
-Python requirements are given in [`recon_replication/requirements.txt`](requirements.txt)
+- Python requirements are given in [`recon_replication/requirements.txt`](requirements.txt)
+- The reconstruction and solution variability codebases require a [Gurobi™ license](https://www.gurobi.com/solutions/licensing/) and installation of Gurobi™ version 9.1.1 or higher
+- The reconstruction codebase requires [installation of a MySQL server](https://dev.mysql.com/doc/refman/8.0/en/installing.html), version 8.0 or higher
+- The reidentification codebase requires [installation of Stata](https://www.stata.com) version 16 or higher
 
-Additionally, the reconstruction software requires [installation of a MySQL server](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/).
 
 ### Controlled randomness
 
@@ -224,6 +226,7 @@ for the MySQL server if they prefer.
 #### Reconstruction `recon_replication/recon`
 
 - [recon_replication/recon/dbrtool.py](recon/dbrtool.py): Script designed to run all steps of reconstruction, including subroutines for querying the SQL database for status of the run
+- [recon_replication/recon/s0_download_data.py](recon/s0_download_data.py): Downloads SF1 files
 - [recon_replication/recon/s1_make_geo_files.py](recon/s1_make_geo_files.py): Generates SQL tables containing information on population sizes by 2010 Census summary level (geography)
 - [recon_replication/recon/s2_nbuild_state_stats.py](recon/s2_nbuild_state_stats.py): Ingests SF1 tables for use in reconstruction
 - [recon_replication/recon/s3_pandas_synth_lp_files.py](recon/s3_pandas_synth_lp_files.py): Read processed SF1 tables and create the linear programming (LP) files needed for the Gurobi™ solver
@@ -312,6 +315,9 @@ in an AWS S3 bucket `<S3ROOT>`
     - `$(./dbrtool.py --env)`
 1. Create new reconstruction experiment and create database tables
     - `./dbrtool.py --reident hdf_bt --register`
+1. Download SF1 tables and copy to S3
+    - `python s0_download_data.py --reident hdf_bt --all`
+    - `aws s3 cp 2010-re/hdf_bt/dist/ <S3_ROOT>/2010-re/hdf_bt/dist/ --recursive`
 1. Run step1 to create geography files
     - `./dbrtool.py --reident hdf_bt --step1 --latin1`
 1. Run step2 to ingest SF1 tables
@@ -332,6 +338,8 @@ in an AWS S3 bucket `<S3ROOT>`
 
 1. Register new reconstruction experiment and create database tables
     - `./dbrtool.py --reident hdf_b --register`
+1. Copy SF1 tables to S3
+    - `aws s3 cp 2010-re/hdf_bt/dist/ <S3_ROOT>/2010-re/hdf_b/dist/ --recursive`
 1. Run step1 to create geography files
     - `./dbrtool.py --reident hdf_b --step1 --latin1`
 1. Run step2 to ingest SF1 tables
@@ -399,11 +407,6 @@ environment.
     - `unzip -d ${workdir} ${workdir}/CUI__SP_CENS_T13_recon_replication_data_20230426.zip`
 1. Copy solution variability results to required location
     - `aws s3 cp ${CROOT}/solvar/scaled_ivs.csv ${workdir}/data/reid_module/solvar/`
-1. Create necessary directories
-    - `mkdir -P ${workdir}/recon_replication/reidmodule/logs/`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/data/temp`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/results`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/results/CBDRB-FY22-DSEP-004`
 1. Copy rHDFs from S3 bucket, extract, and create necessary links
     - `cd ${workdir}/data/reid_module/rhdf/r00/`
     - `aws s3 cp ${CROOT}/2010-re/hdf_bt/rhdf_bt.csv.zip .`

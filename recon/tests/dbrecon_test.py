@@ -1,4 +1,4 @@
-import py.test
+import pytest
 import os
 import os.path
 from os.path import abspath,dirname,basename
@@ -10,7 +10,7 @@ PARENT_DIR = dirname(MY_DIR)
 if PARENT_DIR not in sys.path:
     sys.path.append(PARENT_DIR)
 
-S3_TESTFILE = '$DAS_S3INPUTS/unit-test-data/stats_2010/recon/testfile.txt.gz'
+S3_TESTFILE = '$DAS_S3ROOT/unit-test-data/stats_2010/recon/testfile.txt.gz'
 S3_TESTFILE_CONTENTS='Hello World.\nThis is a test.\n'
 
 # this shouldn't be necessary

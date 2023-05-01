@@ -1,4 +1,4 @@
-import py.test
+import pytest
 import sys
 import os
 import datetime
