@@ -10,7 +10,6 @@ matplotlib==3.7.1
 mypy_boto3_s3==1.26.116
 numpy==1.23.3
 openpyxl==3.1.2
-pandas==1.4.4
 pandas==1.4.3
 psutil==5.9.5
 pymysql==1.0.3
@@ -25,6 +24,5 @@ setuptools==63.2.0
 tqdm==4.65.0
 ttable==0.6.4
 typing_extensions==4.5.0
-urllib3==2.0.1
-xmlrpclib==1.0.1
+urllib3==1.26.10
 z3==0.2.0
