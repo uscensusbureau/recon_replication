@@ -1,0 +1,36 @@
+
+Gurobi 8.1.1 (linux64, Python) logging started Fri Jun 21 10:04:21 2019
+
+Changed value of parameter LogToConsole to 0
+   Prev: 1  Min: 0  Max: 1  Default: 1
+Read LP format model from file /tmp/stdin-24592-_home_ecco_lv39_projects_2010_recon_az_04001_lp_model_04001944300.lp.gz.lp
+Reading time = 68.12 seconds
+Arbitrary_Objective_Function: 137360 rows, 4075777 columns, 51432411 nonzeros
+Changed value of parameter Threads to 8
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Optimize a model with 137360 rows, 4075777 columns and 51432411 nonzeros
+Variable types: 1 continuous, 4075776 integer (4075776 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+02]
+Presolve removed 0 rows and 0 columns (presolve time = 8s) ...
+Presolve removed 226 rows and 227 columns (presolve time = 14s) ...
+Presolve removed 247 rows and 1272 columns (presolve time = 19s) ...
+Presolve removed 124758 rows and 4023385 columns (presolve time = 23s) ...
+Presolve removed 124758 rows and 4023388 columns (presolve time = 26s) ...
+Presolve removed 127872 rows and 4062682 columns (presolve time = 30s) ...
+Presolve removed 137204 rows and 4075022 columns
+Presolve time: 32.45s
+Presolved: 156 rows, 755 columns, 1510 nonzeros
+Variable types: 0 continuous, 755 integer (585 binary)
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 51.80 seconds
+Thread count was 8 (of 32 available processors)
+
+Solution count 1: 0 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
