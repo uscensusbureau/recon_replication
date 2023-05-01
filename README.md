@@ -312,6 +312,9 @@ in an AWS S3 bucket `<S3ROOT>`
     - `$(./dbrtool.py --env)`
 1. Create new reconstruction experiment and create database tables
     - `./dbrtool.py --reident hdf_bt --register`
+1. Download SF1 tables and copy to S3
+    - `python s0_download_data.py --reident hdf_bt --all`
+    - `aws s3 cp 2010-re/hdf_bt/dist/ <S3_ROOT>/2010-re/hdf_bt/dist/ --recursive`
 1. Run step1 to create geography files
     - `./dbrtool.py --reident hdf_bt --step1 --latin1`
 1. Run step2 to ingest SF1 tables
@@ -332,6 +335,8 @@ in an AWS S3 bucket `<S3ROOT>`
 
 1. Register new reconstruction experiment and create database tables
     - `./dbrtool.py --reident hdf_b --register`
+1. Copy SF1 tables to S3
+    - `aws s3 cp 2010-re/hdf_bt/dist/ <S3_ROOT>/2010-re/hdf_b/dist/ --recursive`
 1. Run step1 to create geography files
     - `./dbrtool.py --reident hdf_b --step1 --latin1`
 1. Run step2 to ingest SF1 tables

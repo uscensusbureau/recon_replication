@@ -34,6 +34,7 @@ def download(stusab, sf1_dest_dir):
     config = dbrecon.GetConfig().get_config()
     stusab = stusab.lower()
     rec        = dbrecon.state_rec(stusab)
+    print(rec)
     state_code = dbrecon.state_fips(stusab)
 
     ### check for file and if does not exist, download it
