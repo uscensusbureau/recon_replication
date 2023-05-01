@@ -15,9 +15,8 @@ class YumLocalMysql(Command):
 
     def run(self):
         # Run some additional setup steps here
-        print('Running my custom command...')
-        subprocess.run(['sudo', 'yum', 'install', 'mysql-server'])
-        subprocess.run(['sudo', 'yum', 'install', 'mysql'])
+        subprocess.run(['sudo', 'yum', 'install', 'mysql-server*8.0.28*'])
+        subprocess.run(['sudo', 'yum', 'install', 'mysql*8.0.28*'])
 
 
 
