@@ -12,10 +12,7 @@ A collection of functions useful for working with file, web, and AWS paths
 import os
 import os.path
 import re
-try:
-    from ctools.env import census_getenv
-except ImportError:
-    from das_framework.ctools.env import census_getenv
+from ctools.env import census_getenv
 
 variable=re.compile('(\$\{\w*\})|(\$\w*)')
 
