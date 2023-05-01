@@ -399,11 +399,6 @@ environment.
     - `unzip -d ${workdir} ${workdir}/CUI__SP_CENS_T13_recon_replication_data_20230426.zip`
 1. Copy solution variability results to required location
     - `aws s3 cp ${CROOT}/solvar/scaled_ivs.csv ${workdir}/data/reid_module/solvar/`
-1. Create necessary directories
-    - `mkdir -P ${workdir}/recon_replication/reidmodule/logs/`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/data/temp`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/results`
-    - `mkdir -P ${workdir}/recon_replication/reidpaper_python/results/CBDRB-FY22-DSEP-004`
 1. Copy rHDFs from S3 bucket, extract, and create necessary links
     - `cd ${workdir}/data/reid_module/rhdf/r00/`
     - `aws s3 cp ${CROOT}/2010-re/hdf_bt/rhdf_bt.csv.zip .`
