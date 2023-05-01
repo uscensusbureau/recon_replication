@@ -224,6 +224,7 @@ for the MySQL server if they prefer.
 #### Reconstruction `recon_replication/recon`
 
 - [recon_replication/recon/dbrtool.py](recon/dbrtool.py): Script designed to run all steps of reconstruction, including subroutines for querying the SQL database for status of the run
+- [recon_replication/recon/s0_download_data.py](recon/s0_download_data.py): Downloads SF1 files
 - [recon_replication/recon/s1_make_geo_files.py](recon/s1_make_geo_files.py): Generates SQL tables containing information on population sizes by 2010 Census summary level (geography)
 - [recon_replication/recon/s2_nbuild_state_stats.py](recon/s2_nbuild_state_stats.py): Ingests SF1 tables for use in reconstruction
 - [recon_replication/recon/s3_pandas_synth_lp_files.py](recon/s3_pandas_synth_lp_files.py): Read processed SF1 tables and create the linear programming (LP) files needed for the Gurobi™ solver
