@@ -1,4 +1,4 @@
-import py.test
+import pytest
 import os
 import os.path
 from os.path import abspath,dirname,basename
