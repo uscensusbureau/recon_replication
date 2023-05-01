@@ -26,3 +26,4 @@ ttable==0.6.4
 typing_extensions==4.5.0
 urllib3==1.26.10
 z3==0.2.0
+pylint==2.13.7
