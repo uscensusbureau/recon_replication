@@ -24,6 +24,7 @@ def test_validate_lpfile():
     assert dbrecon.validate_lpfile( os.path.join(MY_DIR, "model_29183980000.lp.gz")) == True
 
 
+@pytest.mark.skip(reason="Needs S3 to Test")
 def test_s3gateway():
     v1 = dbrecon.dopen(S3_TESTFILE, 'r', download=False).read()
     assert v1 == S3_TESTFILE_CONTENTS
