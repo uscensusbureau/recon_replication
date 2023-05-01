@@ -145,6 +145,29 @@ FAST = dbrtool_config['dbrtool']['FAST']
 def sf1_zipfile_name(reident, stusab):
     return os.path.join(os.environ['DAS_S3ROOT'],f'2010-re/{reident}/dist/{stusab.lower()}2010.sf1.zip')
 
+
+def confirm_mysql():
+    env = get_mysql_env()
+    try:
+        conn = pymysql.connect(
+            host=env['MYSQL_HOST'],
+            user=env['MYSQL_USER'],
+            password=env['MYSQL_PASSWORD'],
+            database=env['MYSQL_DATABASE']
+            )
+    # Check if the connection is successful
+        logging.info("Connected to MySQL database")
+
+        # Execute a simple query to test the connection
+        cursor = conn.cursor()
+        cursor.execute("CREATE TABLE zzzTESTdelete (id INT(11))")
+        cursor.execute("DROP TABLE zzzTESTdelete")
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+    except pymysql.err.OperationalError as e:
+        logging.error(f"Failed to connect to MySQL check credentials ERROR: {e}")
+
 def get_mysql_env():
     """Return a dictionary of the MySQL information in the dbrecon_config.json file"""
     # pylint: disable=E0401
@@ -711,6 +734,7 @@ if __name__ == "__main__":
     if args.env:
         for(k,v) in get_mysql_env().items():
             print(f"export {k}={v}")
+        confirm_mysql()
         exit(0)
 
     if args.info:
