@@ -9,6 +9,7 @@ __pycache__
 *.log
 *.zip
 logs/
+recon/logs
 sf1/
 sf2/
 pl94/
