@@ -25,4 +25,4 @@ pylint:
 
 # Run tests using pytest
 pytest:
-	$(PYTHON) -m $(PYTEST) $(PYTEST_OPTS)
+	$(PYTHON) -m $(PYTEST) $(PYTEST_OPTS) recon/tests
