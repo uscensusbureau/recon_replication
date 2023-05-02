@@ -142,7 +142,8 @@ The documentation above is accurate as of April 26, 2023.
 
 ### Software requirements
 
-- Python requirements are given in [`recon_replication/requirements.txt`](requirements.txt)
+- Python version 3.8
+- Python package requirements are given in [`recon_replication/requirements.txt`](requirements.txt)
 - The reconstruction and solution variability codebases require a [Gurobi™ license](https://www.gurobi.com/solutions/licensing/) and installation of Gurobi™ version 9.1.1 or higher
 - The reconstruction codebase requires [installation of a MySQL server](https://dev.mysql.com/doc/refman/8.0/en/installing.html), version 8.0 or higher
 - The reidentification codebase requires [installation of Stata](https://www.stata.com) version 16 or higher
