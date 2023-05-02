@@ -221,7 +221,7 @@ The instructions below will assume that replicators are installing MySQL on the 
 the AWS cluster, but replicators may choose to have a dedicated AWS EMR or EC2 instance
 for the MySQL server if they prefer.  
 Then setup the desired database using the provided schema: [recon_replication/recon/schema_common.sql](recon/schema_common.sql)  
-This can be done with the following command: `mysql -u [ROOT_USERNAME] -p [DB_NAME] < recon_replication/recon/schema_common.sql`  
+This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NAME> < recon_replication/recon/schema_common.sql`  
 
 
 ### List of software files
