@@ -9,8 +9,8 @@ $(./dbrtool.py --env);
 
 ./dbrtool.py --reident $REIDENT --register;
 
-python3 s0_download_data.py --reident $REIDENT al;
+python3 s0_download_data.py --reident $REIDENT $STATE;
 
-./dbrtool.py --reident $REIDENT --step1 --step2 --stusab al;
+./dbrtool.py --reident $REIDENT --step1 --step2 --stusab $STATE;
 
-./dbrtool.py --reident $REIDENT --stusab al --runbg --launch_all --step5 --step6;
+./dbrtool.py --reident $REIDENT --stusab $STATE --runbg --launch_all --step5 --step6;
