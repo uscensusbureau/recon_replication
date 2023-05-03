@@ -18,8 +18,6 @@ python3 s0_download_data.py --reident $REIDENT $STATE;
 
 ./dbrtool.py --reident $REIDENT --step1 --step2 --stusab $STATE;
 
-$PYTHON ./s3_pandas_synth_lp_files.py --reident $REIDENT --stusab $STATE --tract $FIPTRACT --st $FIPCOUNTY ;
+$PYTHON ./s3_pandas_synth_lp_files.py --reident $REIDENT $STATE $FIPCOUNTY $FIPTRACT ;
 
-$PYTHON ./s4_run_gurobi.py --reident $REIDENT --stusab $STATE --tract $FIPTRACT --st $FIPCOUNTY ;
-
-$PYTHON ./s5_make_microdata.py --reident $REIDENT --stusab $STATE --tract $FIPTRACT --st $FIPCOUNTY ;
+$PYTHON ./s4_run_gurobi.py --reident $REIDENT $STATE $FIPCOUNTY $FIPTRACT ;
