@@ -416,8 +416,9 @@ class LPTractBuilder:
 
         # Otherwise, rename the file (which may upload it to s3), and update the databse
         dbrecon.drename(outfilename, lpfilenamegz)
-        wait_bucket, wait_key = s3.get_bucket_key(lpfilenamegz)
-        dbrecon.dwait_exists_boto3(wait_bucket, wait_key)
+        if lpfilenamegz.startswith('s3://'):
+            wait_bucket, wait_key = s3.get_bucket_key(lpfilenamegz)
+            dbrecon.dwait_exists_boto3(wait_bucket, wait_key)
         dbrecon.db_done(dbrecon.auth(), LP, self.stusab, self.county, self.tract, start=start)
         DBMySQL.csfr(dbrecon.auth(), f"UPDATE {REIDENT}tracts SET lp_gb=%s WHERE stusab=%s AND county=%s AND tract=%s",
                      (dbrecon.maxrss()//GB,self.stusab, self.county, self.tract))
