@@ -253,7 +253,7 @@ def run_gurobi(auth, stusab, county, tract, lpgz_filename, dry_run):
         else:
             cmd = [ GZIP, GZIP_OPT, sol_filename]
         subprocess.check_call(cmd)
-        if s3_sol_filename.startswith('s3://'):
+        if s3_sol_filename and s3_sol_filename.startswith('s3://'):
             wait_bucket, wait_key = s3.get_bucket_key(s3_sol_filename+'.gz')
             dbrecon.dwait_exists_boto3(wait_bucket, wait_key)
 
