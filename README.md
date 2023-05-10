@@ -426,7 +426,7 @@ environment.
 1. Change to directory for second stage of reidentification
     - `cd ${workdir}/recon_replication/reidpaper_python/python/`
 1. Run second stage of reidentification
-    - `setsid python3 runall.py`
+    - `setsid python3 runall.py ${workdir}/data/reid_module`
 1. Change to the results directory
     - `cd ${workdir}/recon_replication/reidpaper_python/results/`
 1. Numerical result from this module are not publicly shareable and will be located in:
