@@ -110,7 +110,7 @@ def main():
     agree.main(numWorkers,'hdf','r02',"['exact','binage','oneoff']")
     agree.main(numWorkers,'cef','r03',"['exact','binage','oneoff']")
     agree.main(numWorkers,'hdf','r03',"['exact','binage','oneoff']")
-    #agree.main(numWorkers,'cef','hdf',"['exact','binage','oneoff']")
+    agree.main(numWorkers,'cef','hdf',"['exact','binage','oneoff']")
     
     # putative match 
     putative.main(numWorkers,'cef','cef',"['exact','binage']")
