@@ -282,7 +282,7 @@ This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NA
 
 ## Instructions
 
-### Reconstruction using cesus block- and census tract-level SF1 tables
+### Reconstruction using census block- and census tract-level SF1 tables
 The instructions assume that the user will store reconstruction results
 in an AWS S3 bucket `<S3ROOT>`
 
