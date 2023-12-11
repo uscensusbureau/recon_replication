@@ -1,0 +1,15 @@
+%let state = %sysget(env_stabbr);
+%let imrate = 0.95;
+%let rno = 518483263;
+%let target = %sysget(env_target);
+%let p1floor = 0.99;
+%let p2floor = 0.99;
+%let p3floor = 0.99;
+
+%let statenum = %sysget(env_stfips);
+
+%let prob_cutoff1 = %sysget(env_prob_cutoff1);
+%let prob_cutoff2 = %sysget(env_prob_cutoff2);
+
+%let pprop1=%sysget(env_pprop1);
+%let pprop2=%sysget(env_pprop2);
