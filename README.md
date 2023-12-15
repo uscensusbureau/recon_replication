@@ -127,10 +127,10 @@ commercial assets:
 
 | Data Source | File | Storage Format | Data Format | Data Dictionary |
 | ----------- | ---- | -------------- | ----------- | --------------- |
-| 2010 Experian Research File | `exp_edr2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/cmrcl_exp.md`](cmrcl_exp.md)
-| 2010 InfoUSA Research File | `infousa_jun2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/cmrcl_infousa.md`](cmrcl_infousa.md)
-| 2010 Targus Fed Consumer Research File | `targus_fedconsumer2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/cmrcl_targus.md`](cmrcl_targus.md)
-| 2010 VSGI Research File | `vsgi_nar2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/cmrcl_vsgi.md`](cmrcl_vsgi.md)
+| 2010 Experian Research File | `exp_edr2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/doc/cmrcl_exp.md`](doc/cmrcl_exp.md)
+| 2010 InfoUSA Research File | `infousa_jun2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/doc/cmrcl_infousa.md`](doc/cmrcl_infousa.md)
+| 2010 Targus Fed Consumer Research File | `targus_fedconsumer2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/doc/cmrcl_targus.md`](doc/cmrcl_targus.md)
+| 2010 VSGI Research File | `vsgi_nar2010.sas7bdat` | sas7bdat | SAS V8+ | [`recon_replication/doc/cmrcl_vsgi.md`](doc/cmrcl_vsgi.md)
 
 ## Computational requirements
 Instructions for re-executing the reconstruction and solution variability code
