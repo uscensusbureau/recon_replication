@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+METRICS_CONFIG:
+  HDFDATADIR: "./data/"
+  OUTPUTDIR : "./output/r05/"
+  MDFPERFILEPATH : "./data/rhdf_r05.csv"
+  MDFUNITFILEPATH: ""  
+  MDFPERPRFILEPATH : ""
+  excludePR: True
+  separatePR: False
+  mergeValidation: None
+  DETAILEDTENURE: False
+  P18INCLUDED: False
+  RELINCLUDED: False
+  TOM: False
+  COMMA: False

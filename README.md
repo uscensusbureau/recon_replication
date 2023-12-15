@@ -6,14 +6,14 @@ commercial data and internal 2010 Census data containing personally identifiable
 information, determines if such links constitute reidentification, and computes
 statistics related to the reconstruction and reidentification. 
 
-The code uses a combination of Python, Gurobi™, SQL, and bash scripts.
-Production runs of this software were performed on Amazon Web Services (AWS)
-Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2)
-instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction step
-takes approximately 3 full days per run. Using a cluster of 25 `r5.24xlarge`
-nodes, the solution variability analysis takes approximately 14 days. Using a
-single `r5.24xlarge` node, the reidentification step takes approximately 14
-days.
+The code uses a combination of Python, Gurobi™, SQL, Stata, SAS, and bash
+scripts.  Production runs of this software were performed on Amazon Web
+Services (AWS) Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud
+(EC2) instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction
+step takes approximately 3 full days per run. Using a cluster of 25
+`r5.24xlarge` nodes, the solution variability analysis takes approximately 14
+days. Using a single `r5.24xlarge` node, the reidentification step takes
+approximately 14 days.
 
 In the [instructions for running the software](#Instructions), terms contained
 within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
@@ -41,15 +41,17 @@ The confidential data consist of:
     - Targus Information Corporation
     - VSGI LLC.
 
-The confidential data extracts used by the reidentifiation code are stored in an AWS
-S3 bucket at:
-`${DAS_S3ROOT}/recon_replication/CUI__SP_CENS_T13_recon_replication_data_20230426.zip`
-where `$DAS_S3ROOT` is an environment variable giving the location of the relevant bucket[^1].
+The confidential data extracts used by the reidentifiation code are stored in
+an AWS S3 bucket at:
+`${DAS_S3ROOT}/recon_replication/CUI__SP_CENS_T13_recon_replication_data_20231215.zip`
+where `$DAS_S3ROOT` is an environment variable giving the location of the
+relevant bucket[^1].
 
-The underlying confidential data that serve as the source of the extracts are available
-inside the Census Enterprise Data Lake.  These confidential data have been available at the Census Bureau for the past 12 years, and
-are expected to be available for at least another 10 years. The original locations outside of AWS
-are documented in DMS Project P-7502798.
+The underlying confidential data that serve as the source of the extracts are
+available inside the Census Enterprise Data Lake.  These confidential data have
+been available at the Census Bureau for the past 12 years, and are expected to
+be available for at least another 10 years. The original locations outside of
+AWS are documented in DMS Project P-7502798.
 
 [^1]: The `DAS_S3ROOT` environment variable is correctly set in properly configured DAS EC2 instances
 
@@ -72,10 +74,10 @@ Data contained within the replication package are covered under project #P-75027
 
 The results of this research rely on both publicly available 2010 Census
 tabulations and confidential microdata from the 2010 Census and commercial
-databases. Access to the confidential data is limited to Census Bureau employees
-and those others with Special Sworn Status who have a work-related need to access
-the data and are a listed contributor for project P-7502798 in the Census
-Bureau's Data Management System.
+databases. Access to the confidential data is limited to Census Bureau
+employees and those others with Special Sworn Status who have a work-related
+need to access the data and are a listed contributor for project P-7502798 in
+the Census Bureau's Data Management System.
 
 | Data Source | Access |
 | ----------- | ---- |
@@ -102,13 +104,16 @@ harmonized and merged into a single file for use in reidentifiation
 | Data Source | File | Storage Format | Data Format | Data Dictionary |
 | ----------- | ---- | -------------- | ----------- | --------------- |
 | 2010 Summary File 1 | `<st>2010.sf1.zip` | zip | fixed-width | [2010 SF1 Documentation](https://www2.census.gov/programs-surveys/decennial/2010/technical-documentation/complete-tech-docs/summary-file/sf1.pdf) |
-| 2010 Census Edited File (CEF) Extract | `cef<st><cty>.csv` | csv | csv | [`recon_replication/cef_dict.md`](cef_dict.md) |
-| 2010 Hundred Percent Detail File (HDF) Extract | `hdf<st><cty>.csv` | csv | csv | [`recon_replication/hdf_dict.md`](hdf_dict.md) |
-| 2010 DAS Experiment 23.1 Microdata Detail File (MDF) | `r03<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| 2010 DAS Experiment 23.1 Reconstructed Microdata Detail File (rMDF) | `r02<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| Merged Commercial Data | `cmrcl<st><cty>.csv` | csv | csv | [`recon_replication/cmrcl_dict.md`](cmrcl_dict.md) |
-| List of Counties in 2010 | `allcounties.txt` | csv | csv | Column of all <st><cty> values |
-| List of Blocks in 2010 | `cefblks.csv` | csv | csv | [`recon_replication/cefblks_dict.md`](cefblks_dict.md) |
+| 2010 Census Edited File (CEF) State Extracts | `cef<st><cty>.csv` | csv | csv | [`recon_replication/doc/cef_dict.md`](doc/cef_dict.md) |
+| 2010 Census Edited File (CEF) Persons Extract for Swapping | `swap_pcef.csv` | csv | csv | [`recon_replication/doc/swap_pcef_dict.md`](doc/swap_pcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, CSV | `swap_hcef.csv` | csv | csv | [`recon_replication/doc/swap_hcef_dict.md`](doc/swap_hcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, SAS | `swap_hcef.sas7bdat` | sas7bdat | sas7bdat | [`recon_replication/doc/swap_hcef_dict.md`](doc/swap_hcef_dict.md) |
+| 2010 Hundred Percent Detail File (HDF) Extract | `hdf<st><cty>.csv` | csv | csv | [`recon_replication/doc/hdf_dict.md`](doc/hdf_dict.md) |
+| 2010 DAS Experiment 23.1 Reconstructed Microdata Detail File (rMDF) | `r02<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 DAS Experiment 23.1 Microdata Detail File (MDF) | `r03<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 Swap Experiment HI Reconstructed Microdata Detail File (rMDF) | `r04<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 Swap Experiment LO Reconstructed Microdata Detail File (rMDF) | `r05<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| Merged Commercial Data | `cmrcl<st><cty>.csv` | csv | csv | [`recon_replication/doc/cmrcl_dict.md`](doc/cmrcl_dict.md) |
 
 ## Commercial data provenance
 The server initially housing both data and code for the reconstruction and
@@ -138,7 +143,7 @@ Enterprise Environment. Documenting the computer setup for the Census Bureau's
 Enterprise environment is beyond the scope of this document, for security
 reasons. 
 
-The documentation above is accurate as of April 26, 2023.
+The documentation above is accurate as of December 15, 2023.
 
 ### Software requirements
 
@@ -147,6 +152,7 @@ The documentation above is accurate as of April 26, 2023.
 - The reconstruction and solution variability codebases require a [Gurobi™ license](https://www.gurobi.com/solutions/licensing/) and installation of Gurobi™ version 9.1.1 or higher
 - The reconstruction codebase requires [installation of a MySQL server](https://dev.mysql.com/doc/refman/8.0/en/installing.html), version 8.0 or higher
 - The reidentification codebase requires [installation of Stata](https://www.stata.com) version 16 or higher
+- The swap codebase requires [installation of SAS](https://www.sas.com/en_us/home.html) version 9.4 or higher
 
 
 ### Controlled randomness
@@ -219,10 +225,15 @@ The reconstruction software uses SQL, via MySQL, to manage the workload across t
 Replicators should follow instructions for [creating a MySQL server](https://dev.mysql.com/doc/mysql-getting-started/en/).
 The instructions below will assume that replicators are installing MySQL on the master node of
 the AWS cluster, but replicators may choose to have a dedicated AWS EMR or EC2 instance
-for the MySQL server if they prefer.  
-Then setup the desired database using the provided schema: [recon_replication/recon/schema_common.sql](recon/schema_common.sql)  
-This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NAME> < recon_replication/recon/schema_common.sql`  
+for the MySQL server if they prefer.  Then setup the desired database using the provided schema: [recon_replication/recon/schema_common.sql](recon/schema_common.sql)  
+This can be done with the following command:
+`mysql -u <ROOT_USERNAME> -p <DB_NAME> < recon_replication/recon/schema_common.sql`  
 
+### List of provided metric results
+
+- [recon_replication/metrics/results/2023-04-23_Detailed_Summary_Metrics.xlsx](metrics/results/2023-04-23_Detailed_Summary_Metrics.xlsx): 2010 Summary Metrics Production Settings Demonstration Data Product Suite (including PPMF) Version 2023-04-23
+- [recon_replication/metrics/results/metrics_swapHIbt.xlsx](metrics/results/metrics_swapHIbt.xlsx): 2010 Summary Metrics for HI Swap Experiment
+- [recon_replication/metrics/results/metrics_swapLObt.xlsx](metrics/results/metrics_swapLObt.xlsx): 2010 Summary Metrics for LO Swap Experiment
 
 ### List of software files
 
@@ -250,9 +261,9 @@ This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NA
 
 #### MDF and PPMF conversion
 
--[recon_replication/mdf_rhdf.py](mdf_rhdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to rHDF format for use in reidentification
--[recon_replication/mdf_sf1/mdf_to_hdf.py](mdf_sf1/mdf_to_hdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to 2010 HDF format for use in 2010 SF1 table creation
--[recon_replication/mdf_sf1/make_recon_input.py](mdf_sf1/make_recon_input.py): Python script to create 2010 SF1 tables from 2010 HDF formatted data
+- [recon_replication/mdf_rhdf.py](mdf_rhdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to rHDF format for use in reidentification
+- [recon_replication/mdf_sf1/mdf_to_hdf.py](mdf_sf1/mdf_to_hdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to 2010 HDF format for use in 2010 SF1 table creation
+- [recon_replication/mdf_sf1/make_recon_input.py](mdf_sf1/make_recon_input.py): Python script to create 2010 SF1 tables from 2010 HDF formatted data
 
 #### Reidentification
 
@@ -267,18 +278,32 @@ This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NA
 - [recon_replication/reidmodule/03_agree/agree.py](reidmodule/03_agree/agree.py): Performs record-by-record matching between datasets
 - [recon_replication/reidmodule/04_putative/putative.py](reidmodule/04_putative/putative.py): Performs putative reidentification against commercial and CEF data
 - [recon_replication/reidmodule/05_confirm/confirm.py](reidmodule/05_confirm/confirm.py): Confirms putative reidentifications against the CEF
-- [recon_replication/reidpaper_python/python/runall.py](reidpaper_python/python/runall.py): Script to generate all reidentification statistics
-- [recon_replication/reidpaper_python/python/config.py](reidpaper_python/python/config.py): Configuration script, including directory locations, statistics to run, and macros
-- [recon_replication/reidpaper_python/python/agree_stats.py](reidpaper_python/python/agree_stats.py): Computes agreement statistics
-- [recon_replication/reidpaper_python/python/putative_stats.py](reidpaper_python/python/putative_stats.py): Computes putative reidentification statistics
-- [recon_replication/reidpaper_python/python/confirm_stats.py](reidpaper_python/python/confirm_stats.py): Computes reidentification confirmation statistics
-- [recon_replication/reidpaper_python/python/solvar_stats.py](reidpaper_python/python/solvar_stats.py): Computes statistics based on solution variability
+- [recon_replication/reidpaper/programs/runall.do](reidpaper/programs/runall.do): Script to generate all reidentification statistics
+- [recon_replication/reidpaper/programs/0.config.do](reidpaper/programs/0.config.do): Configuration script, including directory locations, statistics to run, and macros
+- [recon_replication/reidpaper/programs/1.agree_stats.do](reidpaper/programs/1.agree_stats.do): Computes agreement statistics
+- [recon_replication/reidpaper/programs/2.putative_stats.do](reidpaper/programs/2.putative_stats.do): Computes putative reidentification statistics
+- [recon_replication/reidpaper/programs/3.confirm_stats.do](reidpaper/programs/3.confirm_stats.do): Computes reidentification confirmation statistics
+- [recon_replication/reidpaper/programs/4.solvar.do](reidpaper/programs/4.solvar.do): Computes statistics based on solution variability
 
 
 #### Table creation
 
 - [recon_replication/results/make_tables.do](results/make_tables.do): Stata script to produce tabular output of reidentification statistics
 
+#### Suppression
+- [recon_replication/suppression/recode.py](suppression/recode.py): Python script to format CEF into format needed for suppression results
+- [recon_replication/suppression/suppression.py](suppression/recode.py): Python script to produce suppression results
+
+#### Swapping
+- [recon_replication/reid_swap/swap_pairs.sas](reid_swap/swap_pairs.sas): SAS code to find household pairs to swap
+- [recon_replication/reid_swap/pairs_driver.py](reid_swap/pairs_driver.py): Python script to run SAS swapping pairs code for multiple experiments
+- [recon_replication/reid_swap/swap.py](reid_swap/swap.py): Python script to create swapped CEF file
+
+#### Metrics
+- [recon_replication/metrics/recode.py](metrics/recode.py): Python script to convert CEF and rMDF files into format needed for metric evaluation
+- [recon_replication/metrics/metrics.py](metrics/metrics.py): Python script to compute accuracy metrics for reconstruction experiments relative to the CEF
+- [recon_replication/metrics/tables.py](metrics/tables.py): Python script to convert metric results into spreadsheet format
+- [recon_replication/metrics/config.yml](metrics/config.yml): Configuration file for the metrics script
 
 ## Instructions
 
@@ -424,53 +449,67 @@ environment.
     - `cd ${workdir}/recon_replication/reidmodule/`
     - `setsid /usr/bin/python3 runreid.py 40 r00`
 1. Change to directory for second stage of reidentification
-    - `cd ${workdir}/recon_replication/reidpaper_python/python/`
+    - `cd ${workdir}/recon_replication/reidpaper/programs/`
 1. Run second stage of reidentification
-    - `setsid python3 runall.py ${workdir}/data/reid_module`
+    - `setsid stata-se -b runall.do`
 1. Change to the results directory
-    - `cd ${workdir}/recon_replication/reidpaper_python/results/`
+    - `cd ${workdir}/recon_replication/reidpaper/results/`
 1. Numerical result from this module are not publicly shareable and will be located in:
-    - `${workdir}/recon_replication/reidpaper_python/results/CBDRB-FY22-DSEP-004/CBDRB-FY22-DSEP-004.xlsx`
+    - `${workdir}/recon_replication/reidpaper/results/CBDRB-FY22-DSEP-004/CBDRB-FY22-DSEP-004.xlsx`
 
 ### Tabular output
 1. Change to the directory containing Stata code for tabular output
     - `cd ${workdir}/recon_replication/results/`
 1. Link the outputs from reidpaper_python into the `in` folder:
-    - `ln -s ${workdir}/recon_replication/reidpaper_python/results/CBDRB-FY22-DSEP-004/CBDRB-FY22-DSEP-004.xlsx in/CBDRB-FY22-DSEP-004.xlsx`
+    - `ln -s ${workdir}/recon_replication/reidpaper/results/CBDRB-FY22-DSEP-004/CBDRB-FY22-DSEP-004.xlsx in/CBDRB-FY22-DSEP-004.xlsx`
 1. Run the table generation code
     - `stata-se -b make_tables.do`
 1. Change to output directory to view tabular results:
     - `cd ${workdir}/recon_replication/results/out/`
 
+### Suppression
+1. Change to the directory containing Python code for suppression results
+    - `cd ${workdir}/recon_replication/suppression/`
+1. Process CEF data into the required format
+    - `python recode.py`
+1. Create suppression output
+    - `python suppression.py > suppression_results.txt`
+1. Suppression results can be found in:
+   - `${workdir}/recon_replication/suppression/suppresion_results.txt`
+
+### Swapping [^1]
+[^1] Replication results for swapping are obtained by using the
+reconstructed swap files found in the [dataset list](#Dataset-list).
+1. Change to the directory containing the swapping code
+    - `cd ${workdir}/recon_replication/reid_swap/`
+1. Create swap pair lists
+    - `python pairs_driver.py`
+1. Create swapped person file
+    - `python swap.py`
+1. Swapped CEF person files for input into reconstruction can be found in:
+    - `${workdir}/recon_replication/reid_swap/LO/swapped_us.csv`
+    - `${workdir}/recon_replication/reid_swap/HI/swapped_us.csv`
+
+### Metrics
+1. Change to the directory containing the metrics code
+    - `cd ${workdir}/recon_replication/metrics/`
+1. Create recoded CEF file needed for metrics
+    - `python recode.py --infile ${workdir}/data/reid_module/cef/cef.csv --outfile cef.csv --cef`
+1. Run metrics for HI swap experiment
+    - `python metrics.py -c HIconfig.yml`
+1. Run metrics for LO swap experiment
+    - `python metrics.py -c LOconfig.yml`
+1. Create spreadsheet output for HI swap results
+    - `python tables.py -v r04 -r False`
+1. Create spreadsheet output for LO swap results
+    - `python tables.py -v r05 -r False`
+1. Metric results for the HI swap experiment will be in:
+    - `${workdir}/recon_replication/metrics/output/r04/metrics_r04.xlsx`
+1. Metric results for the LO swap experiment will be in:
+    - `${workdir}/recon_replication/metrics/output/r05/metrics_r05.xlsx`
 
 ## List of tables reproduced by or found in this replication package
 
-This replication package reproduces the [main text tables and figures](#Main-text-tables-and-figures)
-and the [supplementary text tables and figures](#Supplementary-text-tables-and-figures)
-listed below.  It does not reproduce flowcharts, algorithms, or non-numeric tables given in the
-main or supplementary texts.
-
-### Main text tables and figures
-
-| Table or Figure | Description |
-| --- | --- |
-| Table 3 | Reconstruction agreement statistics |
-| Table 4 | Putative reidentification, confirmed reidentification, and precision rates for all data-defined persons in the 2010 Census |
-| Table 5 | Putative reidentifications, confirmed reidentifications, and precision rates for nonmodal persons |
-| Table 6 | Precision rates for all zero solvar nonmodal persons and population unique zero solvar nonmodal persons including results using the 2020 Census Disclosure Avoidance System applied to the 2010 Census
-
-### Supplementary text tables and figures
-
-| Table or Figure | Description |
-| --- | --- |
-| Table S4 | Selected empirical quantiles for census block-level solution variability |
-| Table S5 | Population uniques and zero solution variability by census block size |
-| Table S6 | Putative reidentifications, confirmed reidentifications, and precision rates for all data-defined persons by census block size |
-| Table S7 | Putative reidentification, confirmed reidentification, and precision rates for all data-defined COMRCL records and for all data-defined records matching the CEF |
-| Table S8 | Putative reidentifications, confirmed reidentifications, and precision rates for  nonmodal persons in blocks with zero solution variability |
-| Table S9 | Putative reidentifications, confirmed reidentifications, and precision rates for modal persons by census block size |
-| Table S10 | Selected reconstruction agreement statistics with comparisons to output from the 2020 Census Disclosure Avoidance System using the 2010 Census as input |
-| Table S11 | Putative reidentifications, confirmed reidentifications, and precision rates for nonmodal persons using the 2020 Disclosure Avoidance System by census block size |
-| Table S12 | Putative reidentifications, confirmed reidentifications, and precision rates for all data-defined persons using the 2020 Disclosure Avoidance System by census block size |
-| Table S13 | Putative reidentifications, confirmed reidentifications, and precision rates for modal persons using the 2020 Disclosure Avoidance System by census block size |
+This replication archive reproduces tabular results listed in the
+[accompanying spreadsheet](<20231214-HDSR submission tables and figures.xlsx>)
 
