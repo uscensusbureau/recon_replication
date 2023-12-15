@@ -256,9 +256,9 @@ This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NA
 
 #### MDF and PPMF conversion
 
--[recon_replication/mdf_rhdf.py](mdf_rhdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to rHDF format for use in reidentification
--[recon_replication/mdf_sf1/mdf_to_hdf.py](mdf_sf1/mdf_to_hdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to 2010 HDF format for use in 2010 SF1 table creation
--[recon_replication/mdf_sf1/make_recon_input.py](mdf_sf1/make_recon_input.py): Python script to create 2010 SF1 tables from 2010 HDF formatted data
+- [recon_replication/mdf_rhdf.py](mdf_rhdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to rHDF format for use in reidentification
+- [recon_replication/mdf_sf1/mdf_to_hdf.py](mdf_sf1/mdf_to_hdf.py): Python script to convert 2010 Microdata Files (MDFs) and 2010 Privacy Protected Microdata Files (PPMFs) to 2010 HDF format for use in 2010 SF1 table creation
+- [recon_replication/mdf_sf1/make_recon_input.py](mdf_sf1/make_recon_input.py): Python script to create 2010 SF1 tables from 2010 HDF formatted data
 
 #### Reidentification
 
@@ -505,6 +505,5 @@ reconstructed swap files found in the [dataset list](#Dataset-list).
 
 ## List of tables reproduced by or found in this replication package
 
-This replication archive reproduces tabular results listed in the
-[accompanying spreadsheet](20231214-HDSR submission tables and figures.xlsx)
+This replication archive reproduces tabular results listed in the [accompanying spreadsheet](20231214-HDSR submission tables and figures.xlsx)
 
