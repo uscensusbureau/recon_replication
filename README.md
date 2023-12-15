@@ -505,5 +505,6 @@ reconstructed swap files found in the [dataset list](#Dataset-list).
 
 ## List of tables reproduced by or found in this replication package
 
-This replication archive reproduces tabular results listed in the [accompanying spreadsheet](20231214-HDSR submission tables and figures.xlsx)
+ehis replication archive reproduces tabular results listed in the
+[accompanying spreadsheet](<20231214-HDSR submission tables and figures.xlsx>)
 
