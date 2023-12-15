@@ -1,3 +1,7 @@
+#As a work of the United States government, this project is in the public
+#domain within the United States. Additionally, we waive copyright and related
+#rights in the work worldwide through the CC0 1.0 Universal public domain
+#dedication (https://creativecommons.org/publicdomain/zero/1.0/)
 '''Take swap pairs list and perform swap on recon CEF file
    Can definitely set this up to parallelize states'''
 
@@ -103,8 +107,10 @@ def merge_experiment(exp_result, merge_file_path):
                 fout.writelines(f)
 
 if __name__ == '__main__':
-    hi_list = [x + ['HI', 'swap_hcef.csv', 'swap_pcef.csv'] for x in STATE_LIST]
-    lo_list = [x + ['LO', 'swap_hcef.csv', 'swap_pcef.csv'] for x in STATE_LIST]
+    hcef_path = '../../data/reid_module/cef/swap_hcef.csv'
+    pcef_path = '../../data/reid_module/cef/swap_pcef.csv'
+    hi_list = [x + ['HI', hcef_path, pcef_path] for x in STATE_LIST]
+    lo_list = [x + ['LO', hcef_path, pcef_path] for x in STATE_LIST]
     lo_list = [lo_list[x] for x in [1, 50]]
     hi_list = [hi_list[x] for x in [1, 50]]
     with Pool(processes=26) as pool:
