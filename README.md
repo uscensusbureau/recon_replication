@@ -6,14 +6,14 @@ commercial data and internal 2010 Census data containing personally identifiable
 information, determines if such links constitute reidentification, and computes
 statistics related to the reconstruction and reidentification. 
 
-The code uses a combination of Python, Gurobi™, SQL, and bash scripts.
-Production runs of this software were performed on Amazon Web Services (AWS)
-Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud (EC2)
-instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction step
-takes approximately 3 full days per run. Using a cluster of 25 `r5.24xlarge`
-nodes, the solution variability analysis takes approximately 14 days. Using a
-single `r5.24xlarge` node, the reidentification step takes approximately 14
-days.
+The code uses a combination of Python, Gurobi™, SQL, Stata, SAS, and bash
+scripts.  Production runs of this software were performed on Amazon Web
+Services (AWS) Elastic Map Reduce (EMR) clusters and AWS Elastic Compute Cloud
+(EC2) instances. Using a cluster of 30 `r5.24xlarge` nodes, the reconstruction
+step takes approximately 3 full days per run. Using a cluster of 25
+`r5.24xlarge` nodes, the solution variability analysis takes approximately 14
+days. Using a single `r5.24xlarge` node, the reidentification step takes
+approximately 14 days.
 
 In the [instructions for running the software](#Instructions), terms contained
 within angle brackets (e.g. `<term>`) are to be substituted by the user. Terms
@@ -229,6 +229,11 @@ for the MySQL server if they prefer.
 Then setup the desired database using the provided schema: [recon_replication/recon/schema_common.sql](recon/schema_common.sql)  
 This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NAME> < recon_replication/recon/schema_common.sql`  
 
+### List of provided metric results
+
+- [recon_replication/metrics/results/2023-04-23_Detailed_Summary_Metrics.xlsx](metrics/results/2023-04-23_Detailed_Summary_Metrics.xlsx): 2010 Summary Metrics Production Settings Demonstration Data Product Suite (including PPMF) Version 2023-04-23
+- [recon_replication/metrics/results/metrics_swapHIbt.xlsx](metrics/results/metrics_swapHIbt.xlsx): 2010 Summary Metrics for HI Swap Experiment
+- [recon_replication/metrics/results/metrics_swapLObt.xlsx](metrics/results/metrics_swapLObt.xlsx): 2010 Summary Metrics for LO Swap Experiment
 
 ### List of software files
 
