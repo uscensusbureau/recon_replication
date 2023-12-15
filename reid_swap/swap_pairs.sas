@@ -1,3 +1,10 @@
+/*
+As a work of the United States government, this project is in the public
+domain within the United States. Additionally, we waive copyright and related
+rights in the work worldwide through the CC0 1.0 Universal public domain
+dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+*/
+
 %global imrate;       *cutoff for block imputation rate;
 %global rno;          *random number start;
 %global s2uniq;       *count of selected uniqs by key2;
@@ -42,6 +49,7 @@ because the part of the dynamic record selection based on
 imputation rate, among other things, is no longer used. * I propose deleting this comment once we have confirmed that we are confident it is correct
 ***************************************************/
 
+libname cef '../../data/reid_module/cef/';
 libname library '.';
 libname me '.';                               *everything set to directory
                                                from which the program is run;
@@ -96,10 +104,10 @@ run;
 %mend HOWMANY ;
 
 %put &statenum.;
-proc contents data=me.swap_hcef;
+proc contents data=cef.swap_hcef;
 run;
 
-proc print data=me.swap_hcef(where=(input(tabblkst, best2.) eq 2));
+proc print data=cef.swap_hcef(where=(input(tabblkst, best2.) eq 2));
 run;
 
 %macro readin;
@@ -110,7 +118,7 @@ for a given state (the state is specified
 in header_newinput.txt))
 **********************************/
 data orig(keep=key);
-set me.swap_hcef(where=(input(tabblkst, BEST2.) eq &statenum.));
+set cef.swap_hcef(where=(input(tabblkst, BEST2.) eq &statenum.));
 county=put(tabblkcou,3.);
 tract=put(tabtractce,6.);
 block=put(tabblk,4.);
@@ -156,7 +164,7 @@ run;
 data orig2 (drop=ikey geo tenure)
      key2list (keep=key2)
      me.ckey_&state (keep=key geo);                     
-   set me.swap_hcef(keep=control tabblkcou tabtractce tabblk ten household_size tabblkst where=(input(tabblkst, best2.) eq &statenum.));
+   set cef.swap_hcef(keep=control tabblkcou tabtractce tabblk ten household_size tabblkst where=(input(tabblkst, best2.) eq &statenum.));
 	county=put(tabblkcou,3.);
 	tract=put(tabtractce,6.);
 	block=put(tabblk,4.);

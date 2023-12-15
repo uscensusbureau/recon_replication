@@ -104,9 +104,10 @@ harmonized and merged into a single file for use in reidentifiation
 | Data Source | File | Storage Format | Data Format | Data Dictionary |
 | ----------- | ---- | -------------- | ----------- | --------------- |
 | 2010 Summary File 1 | `<st>2010.sf1.zip` | zip | fixed-width | [2010 SF1 Documentation](https://www2.census.gov/programs-surveys/decennial/2010/technical-documentation/complete-tech-docs/summary-file/sf1.pdf) |
-| 2010 Census Edited File (CEF) Extract | `cef<st><cty>.csv` | csv | csv | [`recon_replication/cef_dict.md`](cef_dict.md) |
-| 2010 Census Edited File (CEF) Persons Extract for Swapping | `swap_pcef.csv` | csv | csv | [`recon_replication/cef_dict.md`](swap_pcef_dict.md) |
-| 2010 Census Edited File (CEF) Housing Extract for Swapping | `swap_hcef.csv` | csv | csv | [`recon_replication/cef_dict.md`](swap_hcef_dict.md) |
+| 2010 Census Edited File (CEF) State Extracts | `cef<st><cty>.csv` | csv | csv | [`recon_replication/cef_dict.md`](cef_dict.md) |
+| 2010 Census Edited File (CEF) Persons Extract for Swapping | `swap_pcef.csv` | csv | csv | [`recon_replication/swap_pcef_dict.md`](swap_pcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, CSV | `swap_hcef.csv` | csv | csv | [`recon_replication/swap_hcef_dict.md`](swap_hcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, SAS | `swap_hcef.sas7bdat` | sas7bdat | sas7bdat | [`recon_replication/swap_hcef_dict.md`](swap_hcef_dict.md) |
 | 2010 Hundred Percent Detail File (HDF) Extract | `hdf<st><cty>.csv` | csv | csv | [`recon_replication/hdf_dict.md`](hdf_dict.md) |
 | 2010 DAS Experiment 23.1 Reconstructed Microdata Detail File (rMDF) | `r02<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
 | 2010 DAS Experiment 23.1 Microdata Detail File (MDF) | `r03<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
@@ -298,6 +299,7 @@ This can be done with the following command: `mysql -u <ROOT_USERNAME> -p <DB_NA
 #### Metrics
 - [recon_replication/metrics/recode.py](metrics/recode.py): Python script to convert CEF and rMDF files into format needed for metric evaluation
 - [recon_replication/metrics/metrics.py](metrics/metrics.py): Python script to compute accuracy metrics for reconstruction experiments relative to the CEF
+- [recon_replication/metrics/tables.py](metrics/tables.py): Python script to convert metric results into spreadsheet format
 - [recon_replication/metrics/config.yml](metrics/config.yml): Configuration file for the metrics script
 
 ## Instructions
