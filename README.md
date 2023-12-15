@@ -104,18 +104,16 @@ harmonized and merged into a single file for use in reidentifiation
 | Data Source | File | Storage Format | Data Format | Data Dictionary |
 | ----------- | ---- | -------------- | ----------- | --------------- |
 | 2010 Summary File 1 | `<st>2010.sf1.zip` | zip | fixed-width | [2010 SF1 Documentation](https://www2.census.gov/programs-surveys/decennial/2010/technical-documentation/complete-tech-docs/summary-file/sf1.pdf) |
-| 2010 Census Edited File (CEF) State Extracts | `cef<st><cty>.csv` | csv | csv | [`recon_replication/cef_dict.md`](cef_dict.md) |
-| 2010 Census Edited File (CEF) Persons Extract for Swapping | `swap_pcef.csv` | csv | csv | [`recon_replication/swap_pcef_dict.md`](swap_pcef_dict.md) |
-| 2010 Census Edited File (CEF) Housing Extract for Swapping, CSV | `swap_hcef.csv` | csv | csv | [`recon_replication/swap_hcef_dict.md`](swap_hcef_dict.md) |
-| 2010 Census Edited File (CEF) Housing Extract for Swapping, SAS | `swap_hcef.sas7bdat` | sas7bdat | sas7bdat | [`recon_replication/swap_hcef_dict.md`](swap_hcef_dict.md) |
-| 2010 Hundred Percent Detail File (HDF) Extract | `hdf<st><cty>.csv` | csv | csv | [`recon_replication/hdf_dict.md`](hdf_dict.md) |
-| 2010 DAS Experiment 23.1 Reconstructed Microdata Detail File (rMDF) | `r02<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| 2010 DAS Experiment 23.1 Microdata Detail File (MDF) | `r03<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| 2010 Swap Experiment HI Reconstructed Microdata Detail File (rMDF) | `r04<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| 2010 Swap Experiment LO Reconstructed Microdata Detail File (rMDF) | `r05<st><cty>.csv` | csv | csv | [`recon_replication/mdf_dict.md`](mdf_dict.md) |
-| Merged Commercial Data | `cmrcl<st><cty>.csv` | csv | csv | [`recon_replication/cmrcl_dict.md`](cmrcl_dict.md) |
-| List of Counties in 2010 | `allcounties.txt` | csv | csv | Column of all <st><cty> values |
-| List of Blocks in 2010 | `cefblks.csv` | csv | csv | [`recon_replication/cefblks_dict.md`](cefblks_dict.md) |
+| 2010 Census Edited File (CEF) State Extracts | `cef<st><cty>.csv` | csv | csv | [`recon_replication/doc/cef_dict.md`](doc/cef_dict.md) |
+| 2010 Census Edited File (CEF) Persons Extract for Swapping | `swap_pcef.csv` | csv | csv | [`recon_replication/doc/swap_pcef_dict.md`](doc/swap_pcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, CSV | `swap_hcef.csv` | csv | csv | [`recon_replication/doc/swap_hcef_dict.md`](doc/swap_hcef_dict.md) |
+| 2010 Census Edited File (CEF) Housing Extract for Swapping, SAS | `swap_hcef.sas7bdat` | sas7bdat | sas7bdat | [`recon_replication/doc/swap_hcef_dict.md`](doc/swap_hcef_dict.md) |
+| 2010 Hundred Percent Detail File (HDF) Extract | `hdf<st><cty>.csv` | csv | csv | [`recon_replication/doc/hdf_dict.md`](doc/hdf_dict.md) |
+| 2010 DAS Experiment 23.1 Reconstructed Microdata Detail File (rMDF) | `r02<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 DAS Experiment 23.1 Microdata Detail File (MDF) | `r03<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 Swap Experiment HI Reconstructed Microdata Detail File (rMDF) | `r04<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| 2010 Swap Experiment LO Reconstructed Microdata Detail File (rMDF) | `r05<st><cty>.csv` | csv | csv | [`recon_replication/doc/mdf_dict.md`](doc/mdf_dict.md) |
+| Merged Commercial Data | `cmrcl<st><cty>.csv` | csv | csv | [`recon_replication/doc/cmrcl_dict.md`](doc/cmrcl_dict.md) |
 
 ## Commercial data provenance
 The server initially housing both data and code for the reconstruction and
