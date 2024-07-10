@@ -1042,7 +1042,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allgs)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_gs.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_gs.svg, replace width(2000)
 
             #delimit;
                 tw (bar `v' x if lbl=="CEF", bcolor(black))
@@ -1067,7 +1067,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allmdfgs)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_mdf_gs.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_mdf_gs.svg, replace width(2000)
 
 
             #delimit;
@@ -1092,7 +1092,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allcolor)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_color.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_color.svg, replace width(2000)
 
             #delimit;
                 tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1117,7 +1117,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allmdfcolor)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_mdf_color.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_mdf_color.svg, replace width(2000)
         
         }
         
@@ -1144,7 +1144,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allgs)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_gs.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_gs.svg, replace width(2000)
             
 
             #delimit;
@@ -1170,7 +1170,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allmdfgs)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_mdf_gs.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_mdf_gs.svg, replace width(2000)
 
             #delimit;
                 tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1194,7 +1194,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allcolor)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_color.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_color.svg, replace width(2000)
 
             #delimit;
                 tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1219,7 +1219,7 @@ foreach atkr in cef cmrcl {
                 name(`v'allmdfcolor)
             ;
             #delimit cr
-            graph export $out/`v'_blockpop_all_mdf_color.png, replace width(2000)
+            graph export $out/`v'_blockpop_all_mdf_color.svg, replace width(2000)
         }
     }
 }
@@ -1295,7 +1295,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'gs)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_gs.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_gs.svg, replace width(2000)
 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor(black))
@@ -1320,7 +1320,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'mdfgs)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_mdf_gs.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_mdf_gs.svg, replace width(2000)
 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1344,7 +1344,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'color)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_color.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_color.svg, replace width(2000)
                 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1369,7 +1369,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'mdfcolor)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_mdf_color.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_mdf_color.svg, replace width(2000)
             }
             else {
                 #delimit;
@@ -1394,7 +1394,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'gs)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_gs.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_gs.svg, replace width(2000)
 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor(black))
@@ -1419,7 +1419,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'mdfgs)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_mdf_gs.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_mdf_gs.svg, replace width(2000)
 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1443,7 +1443,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'color)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_color.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_color.svg, replace width(2000)
 
                 #delimit;
                     tw (bar `v' x if lbl=="CEF", bcolor("`c1'"))
@@ -1468,7 +1468,7 @@ foreach atkr in cef cmrcl {
                     name(`v'`type'mdfcolor)
                 ;
                 #delimit cr
-                graph export $out/`v'_blockpop_`type'_mdf_color.png, replace width(2000)
+                graph export $out/`v'_blockpop_`type'_mdf_color.svg, replace width(2000)
             }
         }
     }
@@ -1485,10 +1485,10 @@ foreach atkr in cef cmrcl {
             local outFile = "reid_`atkr'_blockpop_mdf"
         }
         grc1leg putr_`atkr'all`type'gs putr_`atkr'nm`type'gs putr_`atkr'm`type'gs confr_`atkr'all`type'gs confr_`atkr'nm`type'gs confr_`atkr'm`type'gs prcn_`atkr'all`type'gs prcn_`atkr'nm`type'gs prcn_`atkr'm`type'gs, legendfrom(putr_`atkr'all`type'gs) imargin(zero)
-        graph export $out/`outFile'_gs.png, replace width(2000)
+        graph export $out/`outFile'_gs.svg, replace width(2000)
 
         grc1leg putr_`atkr'all`type'color putr_`atkr'nm`type'color putr_`atkr'm`type'color confr_`atkr'all`type'color confr_`atkr'nm`type'color confr_`atkr'm`type'color prcn_`atkr'all`type'color prcn_`atkr'nm`type'color prcn_`atkr'm`type'color, legendfrom(putr_`atkr'all`type'color) imargin(zero)
-        graph export $out/`outFile'_color.png, replace width(2000)
+        graph export $out/`outFile'_color.svg, replace width(2000)
     }
 }
 
